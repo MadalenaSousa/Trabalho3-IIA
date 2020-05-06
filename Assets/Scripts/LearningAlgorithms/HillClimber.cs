@@ -23,8 +23,8 @@ public class HillClimber : MetaHeuristic
         populationBlue = new List<Individual>();
 
         while (populationRed.Count < populationSize) {
-			HillClimberIndividual new_ind_red = new HillClimberIndividual (topology, maxNumberOfEvaluations, mutation);
-            HillClimberIndividual new_ind_blue = new HillClimberIndividual(topology, maxNumberOfEvaluations, mutation);
+			HillClimberIndividual new_ind_red = new HillClimberIndividual (NNTopology, maxNumberOfEvaluations, mutationMethod);
+            HillClimberIndividual new_ind_blue = new HillClimberIndividual(NNTopology, maxNumberOfEvaluations, mutationMethod);
             if (seedPopulationFromFile)
             {
                 NeuralNetwork nnRed = getRedIndividualFromFile();

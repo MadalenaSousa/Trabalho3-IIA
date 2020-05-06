@@ -25,8 +25,8 @@ public class GeneticAlgorithm : MetaHeuristic
 
         while (populationRed.Count < populationSize)
         {
-            GeneticIndividual new_ind_red = new GeneticIndividual(topology, maxNumberOfEvaluations, mutation);
-            GeneticIndividual new_ind_blue = new GeneticIndividual(topology, maxNumberOfEvaluations, mutation);
+            GeneticIndividual new_ind_red = new GeneticIndividual(NNTopology, maxNumberOfEvaluations, mutationMethod);
+            GeneticIndividual new_ind_blue = new GeneticIndividual(NNTopology, maxNumberOfEvaluations, mutationMethod);
 
             if (seedPopulationFromFile)
             {
@@ -68,7 +68,7 @@ public class GeneticAlgorithm : MetaHeuristic
 
         // update the generation before creating the new pop
         generation++;
-        if (generation == numGenerations) // no need to execute the step if we reached max generation
+        if (generation == numberOfGenerations) // no need to execute the step if we reached max generation
             return;
         //You should implement the code runs in each generation here
         List<Individual> newPopRed;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,16 +328,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 812458883}
   simulating: 0
-  PathBluePlayer: 
-  PathRedPlayer: 
-  simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
+  PathRedPlayer: Assets/Logs/Best_Red_gen_752.dat
+  PathBluePlayer: Assets/Logs/Best_Blue_gen_827.dat
+  simulationPrefab: {fileID: 1790891761437960923, guid: 85e73099f30f64d0e8b02f259d90236c,
     type: 3}
   TheTimeScale: 1
+  MatchTimeInSecs: 20
   randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
-  randomBallPosition: 1
-  defenseTask: 0
-  MatchTime: 10
+  randomBallPosition: 0
+  MovingBall: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0

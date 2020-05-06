@@ -14,10 +14,7 @@ public class D31NeuralControler : MonoBehaviour
     public GameObject Adversary;
     public GameObject ScoreSystem;
 
-    [Header("Sensor")]
-    public Vector3 frontSensorPosition = new Vector3(0, 1.0f, 2.0f);
-    public float sensorLength = 50f;
-
+    
     public int numberOfInputSensores { get; private set; }
     public float[] sensorsInput;
 
@@ -31,7 +28,7 @@ public class D31NeuralControler : MonoBehaviour
     public List<float> distancefromBallToAdversaryGoal;
     public List<float> distancefromBallToMyGoal;
     public List<float> distanceToClosestWall;
-    public float driveTime = 0;
+    public float simulationTime = 0;
     public float distanceTravelled = 0.0f;
     public float avgSpeed = 0.0f;
     public float maxSpeed = 0.0f;
@@ -91,7 +88,7 @@ public class D31NeuralControler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        driveTime += Time.deltaTime;
+        simulationTime += Time.deltaTime;
         if (running && fixedUpdateCalls % 10 == 0)
         {
             // updating sensors
@@ -101,14 +98,24 @@ public class D31NeuralControler : MonoBehaviour
             float angle = result[0] * 180;
             float strength = result[1];
             
+
+            // debug raycast for the force and angle being applied on the agent
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up;
             dir.z = dir.y;
             dir.y = 0;
-            Vector3 rayDirection = Quaternion.AngleAxis(angle, -1 * Vector3.forward) * Vector3.up;
+            Vector3 rayDirection = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up;
             rayDirection.z = rayDirection.y;
             rayDirection.y = 0;
-            Debug.DrawRay(this.transform.position, rayDirection.normalized * 20, Color.black);
-            
+            if (strength > 0)
+            {
+                Debug.DrawRay(this.transform.position, -rayDirection.normalized * 5, Color.black);
+            }
+            else
+            {
+                Debug.DrawRay(this.transform.position, rayDirection.normalized * 5, Color.black);
+            }
+            //
+
             agent.rb.AddForce(dir * strength * agent.speed); 
             
 
@@ -125,24 +132,10 @@ public class D31NeuralControler : MonoBehaviour
         fixedUpdateCalls++;
     }
 
-
-
-    private bool endSimulationConditions()
-    {
-        // if we do not move for too long, we stop the simulation
-        // or if we are simmulating for too long, we stop the simulation
-        // You can modify this to change the length of the simulation of an individual before evaluating it.
-
-        //o this.maxSimulTime está por defeito a 30s. Se quiserem mais tempo ou menos tempo é só multiplicar ou dividir respectivamente.
-        return driveTime > this.maxSimulTime;
-    }
-
+    // The ambient variables are created here!
     public void SensorHandling()
     {
 
-        Vector3 sensorStartPos = transform.position;
-        sensorStartPos += transform.forward * frontSensorPosition.z;
-        sensorStartPos += transform.up * frontSensorPosition.y;
         Dictionary<string, ObjectInfo> objects = agent.objectsDetector.GetVisibleObjects();
 
         sensorsInput[0] = objects["DistanceToBall"].distance / 95.0f;
@@ -206,7 +199,7 @@ public class D31NeuralControler : MonoBehaviour
 
     public void wrapUp()
     {
-        avgSpeed = avgSpeed / driveTime;
+        avgSpeed = avgSpeed / simulationTime;
         gameOver = true;
         running = false;
         countFrames = 0;
@@ -231,23 +224,32 @@ public class D31NeuralControler : MonoBehaviour
         return ret;
     }
 
+    //* FITNESS AND END SIMULATION CONDITIONS *// 
+
+    private bool endSimulationConditions()
+    {
+        // if we do not move for too long, we stop the simulation
+        // or if we are simmulating for too long, we stop the simulation
+        // You can modify this to change the length of the simulation of an individual before evaluating it.
+
+        //o this.maxSimulTime está por defeito a 30s. Se quiserem mais tempo ou menos tempo é só multiplicar ou dividir respectivamente.
+        return simulationTime > this.maxSimulTime;
+    }
 
     public float GetScoreBlue()
     {
         // Fitness function for the Blue player. The code to attribute fitness to individuals should be written here.  
+        //* YOUR CODE HERE*//
         float fitness = distanceTravelled;
-        return Mathf.RoundToInt(fitness);
+        return fitness;
     }
 
     public float GetScoreRed()
     {
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
-        
+        //* YOUR CODE HERE*//
         float fitness = distanceTravelled;
-
-        // all the information is normalized between 0 and 1. Carefull with the values of the fitness function.
-        return Mathf.RoundToInt(fitness);
+        return fitness;
     }
-
     
 }

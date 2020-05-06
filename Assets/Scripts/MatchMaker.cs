@@ -10,22 +10,27 @@ public class MatchMaker : MonoBehaviour {
 
 	// instances
 	public static MatchMaker instance = null;
-	public Text infoText;
-	public bool simulating = false;
-	public string PathBluePlayer;
+    [HideInInspector]
+    public Text infoText;
+    [HideInInspector]
+    public bool simulating = false;
     public string PathRedPlayer;
+    public string PathBluePlayer;
     public GameObject simulationPrefab;
 	private SimulationInfo bestSimulation;
 	private NeuralNetwork BlueController;
     private NeuralNetwork RedController;
+    [HideInInspector]
     public int TheTimeScale = 1;
-    protected string folder = "Assets/Logs/";
+    //protected string folder = "Assets/Logs/";
+    public float MatchTimeInSecs;
+    [Header("Scenario Conditions")]
     public bool randomRedPlayerPosition = false;
     public bool randomBluePlayerPosition = false;
     public bool randomBallPosition = false;
-    public bool defenseTask = false;
+    public bool MovingBall = false;
 
-    public float MatchTime;
+    
 
 	void Awake(){
 		// deal with the singleton part
@@ -36,26 +41,36 @@ public class MatchMaker : MonoBehaviour {
 			DestroyImmediate (gameObject);    
 		}
 		DontDestroyOnLoad(gameObject);
-		loadBest ();
+		loadPlayers ();
 		simulating = false;
 
 	}
 
-	void loadBest() {
-		if(File.Exists(folder + PathBluePlayer))
+	void loadPlayers() {
+        Debug.Log("Tyring to Load Blue:" + PathBluePlayer);
+        if (File.Exists(PathBluePlayer))
 		{
+            
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(folder + PathBluePlayer, FileMode.Open);
+			FileStream file = File.Open((PathBluePlayer).Trim(), FileMode.Open);
 			this.BlueController = (NeuralNetwork) bf.Deserialize(file);
 			file.Close();
 		}
-
-        if (File.Exists(folder + PathRedPlayer))
+        else
+        {
+            Debug.Log("Path to Red Player does not exist");
+        }
+        Debug.Log("Tyring to Load Red:" + PathRedPlayer);
+        if (File.Exists(PathRedPlayer))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(folder + PathRedPlayer, FileMode.Open);
+            FileStream file = File.Open((PathRedPlayer).Trim(), FileMode.Open);
             this.RedController = (NeuralNetwork)bf.Deserialize(file);
             file.Close();
+        }
+        else
+        {
+            Debug.Log("Path to Red Player does not exist");
         }
 
     }
@@ -76,14 +91,14 @@ public class MatchMaker : MonoBehaviour {
 		if (bluePlayerScript != null &&  bluePlayerScript.enabled)
         {// BluePlayer Controller
             bluePlayerScript.neuralController = BlueController;
-            bluePlayerScript.maxSimulTime = this.MatchTime;
+            bluePlayerScript.maxSimulTime = this.MatchTimeInSecs;
             bluePlayerScript.running = true;
         }
         if (redPlayerScript != null && redPlayerScript.enabled || PathRedPlayer.Length != 0)
         {// RedController Controller
             redPlayerScript.enabled = true;
             redPlayerScript.neuralController = RedController;
-            redPlayerScript.maxSimulTime = this.MatchTime;
+            redPlayerScript.maxSimulTime = this.MatchTimeInSecs;
             redPlayerScript.running = true;
 		}
 
@@ -91,7 +106,7 @@ public class MatchMaker : MonoBehaviour {
 	}
 
 	void Update () {
-        infoText.text = "Playing a match for " + this.MatchTime +" secs";
+        infoText.text = "Playing a match for " + this.MatchTimeInSecs +" secs";
 		// show best.. in loop
 		if (!simulating) {
             // x values: -20, 20
@@ -117,7 +132,7 @@ public class MatchMaker : MonoBehaviour {
                 p.transform.localPosition = ballStartPosition;
             }
 
-            if (defenseTask)
+            if (MovingBall)
             {
                 Goal goal = bestSimulation.sim.transform.Find("Field").transform.Find("RedGoal").GetComponent<Goal>();
                 GameObject p = bestSimulation.sim.transform.Find("Ball").gameObject;
@@ -129,6 +144,9 @@ public class MatchMaker : MonoBehaviour {
                 {
                     goal.initalBallPosition = p.transform.position;
                 }
+
+
+
                 goal.ShootTheBallInMyDirection();
 
             }
@@ -138,9 +156,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red " + bestSimulation.playerRed.GetScoreRed());
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed());
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue " + bestSimulation.playerBlue.GetScoreBlue());
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue());
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}

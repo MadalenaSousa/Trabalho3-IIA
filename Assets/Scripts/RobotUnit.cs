@@ -15,7 +15,6 @@ public class RobotUnit : MonoBehaviour
     public float startTime;
     public float timeElapsed = 0.0f;
     public DetectorScript objectsDetector;
-    private List<Tuple<float, float>> listAngleStr;
     public bool debugMode = true;
     
     
@@ -25,11 +24,8 @@ public class RobotUnit : MonoBehaviour
 
         hitTheBall = 0;
         rb = GetComponent<Rigidbody>();
-        listAngleStr = new List<Tuple<float, float>>();
         this.startTime = Time.time;
         timeElapsed = Time.time - startTime;
-
-
     }
 
 

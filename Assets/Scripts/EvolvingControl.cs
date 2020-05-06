@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 
@@ -31,11 +32,13 @@ public class EvolvingControl : MonoBehaviour {
 
     // instances
     public static EvolvingControl instance = null;
-	public Text infoText;
-	public bool simulating = false;
+    [HideInInspector]
+    public Text infoText;
+    [HideInInspector]
+    public bool simulating = false;
 	public GameObject simulationPrefab;
-	public int nSims;
-	public int seed;
+	public int SimultaneousSimulations;
+	public int RandomSeed;
 
 	private MetaHeuristic metaengine;
 	private List<SimulationInfo> simsInfo;
@@ -50,11 +53,28 @@ public class EvolvingControl : MonoBehaviour {
     public bool randomRedPlayerPosition = true;
     public bool randomBluePlayerPosition = true;
     public bool randomBallPosition = true;
-    public bool defenseTask = true;
+    public bool movingBall = true;
     public int ChangePositions;
     protected Vector3 redPlayerStartPosition;
     protected Vector3 ballStartPosition;
     protected Vector3 bluePlayerStartPosition;
+    protected List<int> indexesRed;
+    protected List<int> indexesBlue;
+    protected bool singlePlayer;
+    protected string textoUpdate;
+
+    public void Shuffle(List<int> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+    }
 
     private void Start()
 	{
@@ -69,13 +89,11 @@ public class EvolvingControl : MonoBehaviour {
 		else if (instance != this) {
 			Destroy (gameObject);    
 		}
-		Random.InitState(seed);
+		Random.InitState(RandomSeed);
 
 		DontDestroyOnLoad(gameObject);
 		initMetaHeuristic ();
         
-        //Time.timeScale = this.Thetimescale;
-        //Time.captureFramerate = 30;
         Application.targetFrameRate = -1;
         QualitySettings.vSyncCount = 0;
         init ();
@@ -102,21 +120,27 @@ public class EvolvingControl : MonoBehaviour {
 
 	private void createSimulationGrid ()
 	{
-        bool singlePlayer = simulationPrefab.name.Contains("Penalty");
+        indexesRed = Enumerable.Range(0, metaengine.populationSize).ToList();
+        indexesBlue = Enumerable.Range(0, metaengine.populationSize).ToList();
+
+        singlePlayer = simulationPrefab.name.Contains("Solo");
         if (singlePlayer) {
             totalSimulations = metaengine.populationSize; //just the one agent
         }
         else
         {
-            totalSimulations = metaengine.populationSize * metaengine.populationSize; // All vs All
+            totalSimulations = metaengine.populationSize; // All vs All
+            this.Shuffle(indexesRed);
+            this.Shuffle(indexesBlue);
+
         }
         
 		simsInfo = new List<SimulationInfo> ();
-		int ncols = totalSimulations == 1 ? 1 : Mathf.Min(nSims,5);
+		int ncols = totalSimulations == 1 ? 1 : Mathf.Min(SimultaneousSimulations,5);
         float spacing = 1.0f / (float) ncols;
 		float sim_height = 1f / (float) ncols;
 		float start_x = 0.0f, start_y = 0.0f;
-        for (int i = 0; i < nSims && i < totalSimulations; i++)
+        for (int i = 0; i < SimultaneousSimulations && i < totalSimulations; i++)
         {
 
             if (i > 0 && i % ncols == 0)
@@ -124,26 +148,10 @@ public class EvolvingControl : MonoBehaviour {
                 start_x = 0.0f;
                 start_y += sim_height;
             }
-            simsInfo.Add(createSimulation(simulations_index, new Rect(start_x, start_y, spacing, sim_height), indiv_index_red, indiv_index_blue));
+            simsInfo.Add(createSimulation(simulations_index, new Rect(start_x, start_y, spacing, sim_height), indexesRed[simulations_index], indexesBlue[simulations_index]));
             start_x += spacing;
 			
 			simulations_index++;
-            if(singlePlayer)
-            {
-                indiv_index_red++;
-            }
-            else
-            {
-                if ((indiv_index_blue + 1) % metaengine.populationSize == 0)
-                {
-                    indiv_index_blue = 0;
-                    indiv_index_red++;
-                }
-                else
-                {
-                    indiv_index_blue++;
-                }
-            }
 
 
 		}
@@ -208,7 +216,7 @@ public class EvolvingControl : MonoBehaviour {
             ballStartPosition.y = p.transform.localPosition.y;
             p.transform.localPosition = ballStartPosition;
         }
-        if (defenseTask)
+        if (movingBall)
         {
             GameObject p = info.sim.transform.Find("Ball").gameObject;
             Goal goal = info.sim.transform.Find("Field").transform.Find("RedGoal").GetComponent<Goal>();
@@ -242,10 +250,11 @@ public class EvolvingControl : MonoBehaviour {
         }
 
 
-        if (metaengine.generation != 0 && (randomBallPosition || randomRedPlayerPosition || randomBluePlayerPosition))
+        if (metaengine.generation != 0 && (!singlePlayer || randomBallPosition || randomRedPlayerPosition || randomBluePlayerPosition))
         {
             metaengine.ResetBestOverall();
         }
+
 
 
         foreach (SimulationInfo info in simsInfo) 
@@ -286,7 +295,7 @@ public class EvolvingControl : MonoBehaviour {
                         DestroyImmediate(simsInfo[i].sim);
                         // deploy another in its place
                         if (simulations_index < totalSimulations) {
-							simsInfo [i] = createSimulation (i, rect, indiv_index_red, indiv_index_blue);
+							simsInfo [i] = createSimulation (i, rect, indexesRed[simulations_index], indexesBlue[simulations_index]);
                             SetTasks(simsInfo[i]);
                             if(simsInfo[i].playerRed != null)
 							    simsInfo [i].playerRed.running = true;
@@ -311,12 +320,14 @@ public class EvolvingControl : MonoBehaviour {
                 }
                 if(metaengine.generation == 1)
                 {
-                    infoText.text = "Generation: " + metaengine.generation + "/" + metaengine.numGenerations + "    Simulation: " + sims_done + "/" + totalSimulations + "\nCurrent Pop Avg Fitness Red: " + metaengine.PopAvgRed + " Current Best Red: " + metaengine.GenerationBestRed.Fitness + "\nCurrent Pop Avg Fitness Blue: " + metaengine.PopAvgBlue + " Current Best Blue: " + metaengine.GenerationBestBlue.Fitness;
+                    infoText.text = "Generation: " + metaengine.generation + "/" + metaengine.numberOfGenerations + "    Simulation: " + sims_done + "/" + totalSimulations + "\nCurrent Pop Avg Fitness Red: " + metaengine.PopAvgRed + " Current Best Red: " + metaengine.GenerationBestRed.Fitness + "\nCurrent Pop Avg Fitness Blue: " + metaengine.PopAvgBlue + " Current Best Blue: " + metaengine.GenerationBestBlue.Fitness;
                 }
-                infoText.text = "Generation: " + metaengine.generation + "/" + metaengine.numGenerations + "    Simulation: " + sims_done + "/" + totalSimulations + "\nCurrent Pop Avg Fitness Red: "+ metaengine.PopAvgRed + " Current Best Red: " +metaengine.GenerationBestRed.Fitness + "\nCurrent Pop Avg Fitness Blue: " + metaengine.PopAvgBlue + " Current Best Blue: " + metaengine.GenerationBestBlue.Fitness;
-				if (sims_done == totalSimulations) {
-					// clear simsInfo array..
-					simsInfo.Clear ();
+                infoText.text = textoUpdate;
+
+                if (sims_done == totalSimulations) {
+                    textoUpdate = "Generation: " + metaengine.generation + "/" + metaengine.numberOfGenerations + "    Simulation: " + sims_done + "/" + totalSimulations + "\nCurrent Pop Avg Fitness Red: " + metaengine.PopAvgRed + " Current Best Red: " + metaengine.GenerationBestRed.Fitness + "\nCurrent Pop Avg Fitness Blue: " + metaengine.PopAvgBlue + " Current Best Blue: " + metaengine.GenerationBestBlue.Fitness;
+                    // clear simsInfo array..
+                    simsInfo.Clear ();
                     goNextGen = true;
 					simulating = false;
 				}
@@ -327,7 +338,7 @@ public class EvolvingControl : MonoBehaviour {
 	public void Update(){
 		if (goNextGen) {
 			goNextGen = false;
-			if (metaengine.generation < metaengine.numGenerations) {
+			if (metaengine.generation < metaengine.numberOfGenerations) {
 
 				// Perform an evolutionary algorithm step
 				metaengine.Step ();
