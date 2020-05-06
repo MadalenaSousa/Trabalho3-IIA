@@ -27,10 +27,17 @@ public class GeneticIndividual : Individual {
         Debug.Log(nn.weights.SelectMany(listsLevel0 => listsLevel0.SelectMany(a => a).ToArray()).ToArray());
     }
 
-    public override void Crossover (Individual partner, float probability)
-	{
-		throw new System.NotImplementedException ();
-	}
+    public override Individual Clone()
+    {
+        GeneticIndividual new_ind = new GeneticIndividual(this.topology, this.maxNumberOfEvaluations, this.mutation);
+
+        genotype.CopyTo(new_ind.genotype, 0);
+        new_ind.fitness = this.Fitness;
+        new_ind.evaluated = false;
+
+        return new_ind;
+    }
+
 
     public override void Mutate(float probability)
     {
@@ -55,21 +62,18 @@ public class GeneticIndividual : Individual {
         }
     }
 
-
+    
     public void MutateGaussian(float probability)
     {
+        /* YOUR CODE HERE! */
         throw new System.NotImplementedException();
     }
 
-    public override Individual Clone ()
-	{
-		GeneticIndividual new_ind = new GeneticIndividual(this.topology, this.maxNumberOfEvaluations, this.mutation);
+    public override void Crossover(Individual partner, float probability)
+    {
+        /* YOUR CODE HERE! */
+        throw new System.NotImplementedException();
+    }
 
-		genotype.CopyTo (new_ind.genotype, 0);
-		new_ind.fitness = this.Fitness;
-		new_ind.evaluated = false;
-
-		return new_ind;
-	}
 
 }

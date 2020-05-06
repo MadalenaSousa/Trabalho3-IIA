@@ -307,8 +307,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1140463230}
   - component: {fileID: 1140463229}
-  - component: {fileID: 1140463233}
   - component: {fileID: 1140463231}
+  - component: {fileID: 1140463232}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -330,14 +330,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 812458883}
   simulating: 0
-  simulationPrefab: {fileID: 1790891761437960923, guid: 85e73099f30f64d0e8b02f259d90236c,
+  simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
     type: 3}
-  nSims: 20
-  seed: 50
+  SimultaneousSimulations: 20
+  RandomSeed: 50
   randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
   randomBallPosition: 0
-  defenseTask: 0
+  movingBall: 0
   ChangePositions: 10
 --- !u!4 &1140463230
 Transform:
@@ -362,21 +362,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 1140463228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mutation: 0
+  mutationMethod: 1
   selectionMethod: 0
-  populationSize: 0
-  topology: 
-  numGenerations: 0
-  maxNumberOfEvaluations: 0
+  populationSize: 1
+  NNTopology: 0c0000000300000002000000
+  numberOfGenerations: 2
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
   generation: 0
   logFilename: 
-  sufix: _teste
+  exportSuffix: _teste
+  mutationProbabilityRedPopulation: 0
+  mutationProbabilityBluePopulation: 0
+--- !u!114 &1140463232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140463228}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mutationMethod: 0
+  selectionMethod: 0
+  populationSize: 0
+  NNTopology: 
+  numberOfGenerations: 0
+  seedPopulationFromFile: 0
+  pathToFileRed: 
+  pathToFileBlue: 
+  generation: 0
+  logFilename: 
+  exportSuffix: _teste
   tournamentSize: 0
   mutationProbabilityRedPopulation: 0
   crossoverProbabilityRedPopulation: 0
@@ -384,32 +408,6 @@ MonoBehaviour:
   mutationProbabilityBluePopulation: 0
   crossoverProbabilityBluePopulation: 0
   elitistBlue: 1
---- !u!114 &1140463233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140463228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mutation: 0
-  selectionMethod: 0
-  populationSize: 1
-  topology: 0c0000000300000002000000
-  numGenerations: 200
-  maxNumberOfEvaluations: 1
-  seedPopulationFromFile: 0
-  pathToFileRed: 
-  pathToFileBlue: 
-  generation: 0
-  logFilename: 
-  sufix: HC
-  mutationProbabilityRedPopulation: 0.15
-  mutationProbabilityBluePopulation: 0.15
 --- !u!1 &2042810374
 GameObject:
   m_ObjectHideFlags: 0
