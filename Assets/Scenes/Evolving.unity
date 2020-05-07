@@ -376,8 +376,8 @@ MonoBehaviour:
   generation: 0
   logFilename: 
   exportSuffix: _teste
-  mutationProbabilityRedPopulation: 0
-  mutationProbabilityBluePopulation: 0
+  mutationProbabilityRedPopulation: 0.2
+  mutationProbabilityBluePopulation: 0.2
 --- !u!114 &1140463232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,11 +390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mutationMethod: 0
+  mutationMethod: 1
   selectionMethod: 0
-  populationSize: 0
-  NNTopology: 
-  numberOfGenerations: 0
+  populationSize: 40
+  NNTopology: 0c0000000300000002000000
+  numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
@@ -402,10 +402,10 @@ MonoBehaviour:
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 0
-  mutationProbabilityRedPopulation: 0
+  mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0
+  mutationProbabilityBluePopulation: 0.15
   crossoverProbabilityBluePopulation: 0
   elitistBlue: 1
 --- !u!1 &2042810374
