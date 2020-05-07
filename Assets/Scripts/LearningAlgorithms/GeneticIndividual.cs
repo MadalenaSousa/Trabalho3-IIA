@@ -65,13 +65,8 @@ public class GeneticIndividual : Individual {
     
     public void MutateGaussian(float probability)
     {
-        for (int i = 0; i < totalSize; i++)
-        {
-            if (Random.Range(0.0f, 1.0f) < probability)
-            {
-                genotype[i] = genotype[i];
-            }
-        }
+        /* YOUR CODE HERE! */
+        throw new System.NotImplementedException();
     }
 
     public override void Crossover(Individual partner, float probability)
