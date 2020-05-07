@@ -232,7 +232,8 @@ public class D31NeuralControler : MonoBehaviour
         // or if we are simmulating for too long, we stop the simulation
         // You can modify this to change the length of the simulation of an individual before evaluating it.
 
-        //o this.maxSimulTime está por defeito a 30s. Se quiserem mais tempo ou menos tempo é só multiplicar ou dividir respectivamente.
+        // o this.maxSimulTime está por defeito a 30s. 
+        // this.maxSimulTime = 30; // Descomentem e alterem aqui valor do maxSimultime se necessário.
         return simulationTime > this.maxSimulTime;
     }
 
