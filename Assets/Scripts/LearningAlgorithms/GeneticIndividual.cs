@@ -72,6 +72,7 @@ public class GeneticIndividual : Individual {
     public override void Crossover(Individual partner, float probability)
     {
         /* YOUR CODE HERE! */
+        /* Nota: O crossover deverá alterar ambos os indivíduos */
         throw new System.NotImplementedException();
     }
 
