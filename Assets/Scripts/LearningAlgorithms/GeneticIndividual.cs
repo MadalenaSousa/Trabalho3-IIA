@@ -87,7 +87,9 @@ public class GeneticIndividual : Individual {
         {
             if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
             {
-                this.genotype[i] = partner.
+                float temp = this.genotype[i]; // troca de genes
+                this.genotype[i] = partner.genotype[i + 1];
+                partner.genotype[i + 1] = temp;
             }
         }*/
         throw new System.NotImplementedException();
