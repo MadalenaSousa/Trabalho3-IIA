@@ -107,7 +107,7 @@ public class EvolvingControl : MonoBehaviour {
 
 	void initMetaHeuristic(){
 		MetaHeuristic[] metaengines = this.GetComponentsInParent<MetaHeuristic> ();
-		// check which one is active..
+		// check which one is active
 		foreach(MetaHeuristic tmp in metaengines){
 			if(tmp.enabled){
 				metaengine = tmp;

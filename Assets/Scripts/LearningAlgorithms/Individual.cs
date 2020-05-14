@@ -27,16 +27,6 @@ public abstract class Individual {
 	
 	}
 
-	public float getGenotype(int index)
-	{
-		return genotype[index];
-	}
-
-	public void setGenotype(int index, float value)
-	{
-		genotype[index] = value;
-	}
-
     public void SetEvaluations(float quality)
     {
         evaluations.Insert(completedEvaluations, quality);
@@ -65,7 +55,6 @@ public abstract class Individual {
 		evaluated = false;
         completedEvaluations = 0;
 		genotype = new float[totalSize];
-		//
 		this.mutation = mutation;
 	}
 

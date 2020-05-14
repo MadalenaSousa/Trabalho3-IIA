@@ -20,11 +20,25 @@ public class GeneticIndividual : Individual {
 
    public override void Initialize(NeuralNetwork nn)
     {
-        if (nn.networkSize != totalSize)
+        int size = nn.weights.Length * nn.weights[0].Length * nn.weights[0][0].Length;
+        if (size != totalSize)
         {
             throw new System.Exception("The Networks do not have the same size!");
         }
-        Debug.Log(nn.weights.SelectMany(listsLevel0 => listsLevel0.SelectMany(a => a).ToArray()).ToArray());
+
+        float[] weights = new float[size];
+        int weightPos = 0;
+        for (int i = 0; i < nn.weights.Length; i++)
+        {
+            for (int j = 0; j < nn.weights[i].Length; j++)
+            {
+                for (int k = 0; k < nn.weights[i][j].Length; k++)
+                {
+                    weights[weightPos++] = nn.weights[i][j][k];
+                }
+            }
+        }
+        weights.CopyTo(genotype, 0);
     }
 
     public override Individual Clone()
@@ -66,38 +80,14 @@ public class GeneticIndividual : Individual {
     public void MutateGaussian(float probability)
     {
         /* YOUR CODE HERE! */
-        float mean = 0; // média/meio
-        float stdev = 0.5f; //desvio padrão
-
-        for (int i = 0; i < totalSize; i++)
-        {
-            if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
-            {
-                genotype[i] = genotype[i] + NextGaussian(mean, stdev); // e aplico uma mutação gaussiana
-            }
-        }
+        throw new System.NotImplementedException();
     }
 
     public override void Crossover(Individual partner, float probability)
     {
         /* YOUR CODE HERE! */
         /* Nota: O crossover deverá alterar ambos os indivíduos */
-
-        if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
-        {
-            int randPoint = Random.Range(0, totalSize-1);
-
-            for (int i = 0; i < totalSize; i++) //a partir do ponto selecionado
-            {
-                if(i >= randPoint)
-                {
-                    float temp = this.genotype[i]; // troca todos os genes para a frente do ponto
-                    this.genotype[i] = partner.getGenotype(i);
-                    partner.setGenotype(i, temp);
-                }
-            }
-
-        }
+        throw new System.NotImplementedException();
     }
 
 

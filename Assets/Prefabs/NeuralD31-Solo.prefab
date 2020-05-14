@@ -586,7 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3736405323714983989}
   m_Layer: 0
-  m_Name: NeuralD31-Penalty
+  m_Name: NeuralD31-Solo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2221,15 +2221,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f139698a694ee49ab739eec093b7fe, type: 3}
---- !u!4 &1790891762719151480 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2245356438410019110, guid: c1f139698a694ee49ab739eec093b7fe,
-    type: 3}
-  m_PrefabInstance: {fileID: 572974583680635998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1790891762719151473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2245356438410019119, guid: c1f139698a694ee49ab739eec093b7fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 572974583680635998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1790891762719151480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2245356438410019110, guid: c1f139698a694ee49ab739eec093b7fe,
     type: 3}
   m_PrefabInstance: {fileID: 572974583680635998}
   m_PrefabAsset: {fileID: 0}
@@ -2260,6 +2260,11 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2212840513878135726, guid: b606527f8af28664a894844f3f526637,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fec784edfa22674aad049d16a32faf7, type: 2}
     - target: {fileID: 3528782872524542113, guid: b606527f8af28664a894844f3f526637,
         type: 3}
       propertyPath: m_IsActive
