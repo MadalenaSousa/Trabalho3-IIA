@@ -66,8 +66,8 @@ public class GeneticIndividual : Individual {
     public void MutateGaussian(float probability)
     {
         /* YOUR CODE HERE! */
-        float mean = 0; // não sei o que sao estas duas variaveis
-        float stdev = 0.5f;
+        float mean = 0; // não sei o que é esta variável
+        float stdev = 0.5f; 
 
         for (int i = 0; i < totalSize; i++)
         {
@@ -83,16 +83,15 @@ public class GeneticIndividual : Individual {
         /* YOUR CODE HERE! */
         /* Nota: O crossover deverá alterar ambos os indivíduos */
 
-        /*for (int i = 0; i < totalSize; i++)
+        for (int i = 0; i < totalSize; i++)
         {
             if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
             {
                 float temp = this.genotype[i]; // troca de genes
-                this.genotype[i] = partner.genotype[i + 1];
-                partner.genotype[i + 1] = temp;
+                this.genotype[i] = partner.getGenotype(i + 1);
+                partner.setGenotype(i + 1, temp);
             }
-        }*/
-        throw new System.NotImplementedException();
+        }
     }
 
 
