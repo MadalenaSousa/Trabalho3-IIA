@@ -83,19 +83,20 @@ public class GeneticIndividual : Individual {
         /* YOUR CODE HERE! */
         /* Nota: O crossover deverá alterar ambos os indivíduos */
 
-        for (int i = 0; i < totalSize; i++)
+        if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
         {
-            if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
-            {
-                for (int j = i; j < totalSize; j++) //a partir do ponto selecionado
-                {
-                    float temp = this.genotype[j]; // troca todos os genes para a frente do ponto
-                    this.genotype[j] = partner.getGenotype(j);
-                    partner.setGenotype(j, temp);
-                }
+            int randPoint = Random.Range(0, totalSize-1);
 
-                break;
+            for (int i = 0; i < totalSize; i++) //a partir do ponto selecionado
+            {
+                if(i >= randPoint)
+                {
+                    float temp = this.genotype[i]; // troca todos os genes para a frente do ponto
+                    this.genotype[i] = partner.getGenotype(i);
+                    partner.setGenotype(i, temp);
+                }
             }
+
         }
     }
 
