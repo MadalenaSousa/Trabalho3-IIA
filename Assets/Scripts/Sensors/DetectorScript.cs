@@ -18,7 +18,6 @@ public class DetectorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
         initialTransformUp = this.transform.up;
         initialTransformFwd = this.transform.forward;
     }
@@ -26,9 +25,6 @@ public class DetectorScript : MonoBehaviour
 
     public Dictionary<string, ObjectInfo> GetVisibleObjects()
     {
-
-
-        //GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 80);
         objectsInformation = new Dictionary<string, ObjectInfo>();
 

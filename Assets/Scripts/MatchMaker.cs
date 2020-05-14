@@ -22,7 +22,6 @@ public class MatchMaker : MonoBehaviour {
     private NeuralNetwork RedController;
     [HideInInspector]
     public int TheTimeScale = 1;
-    //protected string folder = "Assets/Logs/";
     public float MatchTimeInSecs;
     [Header("Scenario Conditions")]
     public bool randomRedPlayerPosition = false;

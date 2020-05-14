@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -367,21 +367,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mutationMethod: 0
   selectionMethod: 0
-  populationSize: 0
-  NNTopology: 
-  numberOfGenerations: 0
+  populationSize: 20
+  NNTopology: 0c0000000300000002000000
+  numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
-  tournamentSize: 0
-  mutationProbabilityRedPopulation: 0
-  crossoverProbabilityRedPopulation: 0
+  tournamentSize: 3
+  mutationProbabilityRedPopulation: 0.15
+  crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0
-  crossoverProbabilityBluePopulation: 0
+  mutationProbabilityBluePopulation: 0.15
+  crossoverProbabilityBluePopulation: 0.9
   elitistBlue: 1
 --- !u!114 &1140463232
 MonoBehaviour:
@@ -398,8 +398,8 @@ MonoBehaviour:
   mutationMethod: 1
   selectionMethod: 0
   populationSize: 1
-  NNTopology: 0c0000000200000003000000
-  numberOfGenerations: 2
+  NNTopology: 0c0000000300000002000000
+  numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -368,7 +368,7 @@ MonoBehaviour:
   mutationMethod: 0
   selectionMethod: 0
   populationSize: 20
-  NNTopology: 0c0000000300000003000000
+  NNTopology: 0c0000000300000002000000
   numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 

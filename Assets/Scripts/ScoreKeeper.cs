@@ -17,7 +17,6 @@ public class ScoreKeeper : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = new int[2];
-        //inds = new string[2];
         //display the score to the screen
         UpdateScoreText();
 

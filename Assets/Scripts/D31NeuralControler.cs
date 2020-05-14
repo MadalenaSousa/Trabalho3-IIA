@@ -14,10 +14,10 @@ public class D31NeuralControler : MonoBehaviour
     public GameObject Adversary;
     public GameObject ScoreSystem;
 
-    
+
     public int numberOfInputSensores { get; private set; }
     public float[] sensorsInput;
-
+    public float simulationTime = 0;
 
     // Available Information 
     [Header("Environment  Information")]
@@ -28,16 +28,12 @@ public class D31NeuralControler : MonoBehaviour
     public List<float> distancefromBallToAdversaryGoal;
     public List<float> distancefromBallToMyGoal;
     public List<float> distanceToClosestWall;
-    public float simulationTime = 0;
     public float distanceTravelled = 0.0f;
     public float avgSpeed = 0.0f;
     public float maxSpeed = 0.0f;
-    public float currentSpeed = 0.0f;
-    public float currentDistance = 0.0f;
     public int hitTheBall;
     public int hitTheWall;
-    public int fixedUpdateCalls = 0;
-    //
+    
 
 
 
@@ -45,6 +41,9 @@ public class D31NeuralControler : MonoBehaviour
     public bool GameFieldDebugMode = false;
     public bool gameOver = false;
     public bool running = false;
+    public float currentSpeed = 0.0f;
+    public int fixedUpdateCalls = 0;
+
 
     private Vector3 startPos;
     private Vector3 previousPos;
@@ -60,14 +59,14 @@ public class D31NeuralControler : MonoBehaviour
 
     private void Awake()
     {
-        // get the car controller
+        // get the robot controller
         agent = GetComponent<RobotUnit>();
         numberOfInputSensores = 12;
         sensorsInput = new float[numberOfInputSensores];
 
-        startPos = agent.transform.position;
+        startPos = agent.transform.localPosition;
         previousPos = startPos;
-        //Debug.Log(this.neuralController);
+        
         if (GameFieldDebugMode && this.neuralController.weights == null)
         {
             Debug.Log("creating nn..!! ONLY IN GameFieldDebug SCENE THIS SHOULD BE USED!");
@@ -97,7 +96,7 @@ public class D31NeuralControler : MonoBehaviour
             result = this.neuralController.process(sensorsInput);
             float angle = result[0] * 180;
             float strength = result[1];
-            
+
 
             // debug raycast for the force and angle being applied on the agent
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.up;
@@ -114,10 +113,9 @@ public class D31NeuralControler : MonoBehaviour
             {
                 Debug.DrawRay(this.transform.position, rayDirection.normalized * 5, Color.black);
             }
-            //
 
-            agent.rb.AddForce(dir * strength * agent.speed); 
-            
+            agent.rb.AddForce(dir * strength * agent.speed);
+
 
             // updating race status
             updateGameStatus();
@@ -156,7 +154,7 @@ public class D31NeuralControler : MonoBehaviour
         }
 
         sensorsInput[8] = Mathf.CeilToInt(Vector3.Distance(ball.transform.localPosition, MyGoal.transform.localPosition)) / 95.0f; // Normalization: 95 is the max value of distance 
-       
+
 
         sensorsInput[9] = Mathf.CeilToInt(Vector3.Distance(ball.transform.localPosition, AdversaryGoal.transform.localPosition)) / 95.0f; // Normalization: 95 is the max value of distance
 
@@ -182,12 +180,14 @@ public class D31NeuralControler : MonoBehaviour
         // This is the information you can use to build the fitness function. 
         Vector2 pp = new Vector2(previousPos.x, previousPos.z);
         Vector2 aPos = new Vector2(agent.transform.localPosition.x, agent.transform.localPosition.z);
-        currentDistance = Mathf.Round(Vector2.Distance(pp, aPos));
+        float currentDistance = (pp - aPos).magnitude;
         distanceTravelled += currentDistance;
         previousPos = agent.transform.localPosition;
         hitTheBall = agent.hitTheBall;
         hitTheWall = agent.hitTheWall;
-        // speed takes into account the direction of the car: if we are reversing it is negative
+        
+        currentSpeed = currentDistance / Time.deltaTime;
+        maxSpeed = (currentSpeed > maxSpeed ? currentSpeed : maxSpeed);
 
         // get my score
         GoalsOnMyGoal = ScoreSystem.GetComponent<ScoreKeeper>().score[player == 0 ? 1 : 0];
@@ -199,7 +199,7 @@ public class D31NeuralControler : MonoBehaviour
 
     public void wrapUp()
     {
-        avgSpeed = avgSpeed / simulationTime;
+        avgSpeed = distanceTravelled / simulationTime;
         gameOver = true;
         running = false;
         countFrames = 0;
@@ -228,11 +228,8 @@ public class D31NeuralControler : MonoBehaviour
 
     private bool endSimulationConditions()
     {
-        // if we do not move for too long, we stop the simulation
-        // or if we are simmulating for too long, we stop the simulation
         // You can modify this to change the length of the simulation of an individual before evaluating it.
-
-        // o this.maxSimulTime está por defeito a 30s. 
+        // (a variavel maxSimulTime está por defeito a 30 segundos)
         //this.maxSimulTime = 30; // Descomentem e alterem aqui valor do maxSimultime se necessário.
         return simulationTime > this.maxSimulTime;
     }
@@ -252,5 +249,5 @@ public class D31NeuralControler : MonoBehaviour
         float fitness = distanceTravelled;
         return fitness;
     }
-    
+
 }
