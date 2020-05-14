@@ -87,9 +87,14 @@ public class GeneticIndividual : Individual {
         {
             if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
             {
-                float temp = this.genotype[i]; // troca de genes
-                this.genotype[i] = partner.getGenotype(i + 1);
-                partner.setGenotype(i + 1, temp);
+                for (int j = i; j < totalSize; j++) //a partir do ponto selecionado
+                {
+                    float temp = this.genotype[j]; // troca todos os genes para a frente do ponto
+                    this.genotype[j] = partner.getGenotype(j);
+                    partner.setGenotype(j, temp);
+                }
+
+                break;
             }
         }
     }
