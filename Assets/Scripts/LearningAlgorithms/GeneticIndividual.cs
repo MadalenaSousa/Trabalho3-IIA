@@ -80,14 +80,38 @@ public class GeneticIndividual : Individual {
     public void MutateGaussian(float probability)
     {
         /* YOUR CODE HERE! */
-        throw new System.NotImplementedException();
+        float mean = 0; // média/meio
+        float stdev = 0.5f; //desvio padrão
+
+        for (int i = 0; i < totalSize; i++)
+        {
+            if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
+            {
+                genotype[i] = genotype[i] + NextGaussian(mean, stdev); // e aplico uma mutação gaussiana
+            }
+        }
     }
 
     public override void Crossover(Individual partner, float probability)
     {
         /* YOUR CODE HERE! */
         /* Nota: O crossover deverá alterar ambos os indivíduos */
-        throw new System.NotImplementedException();
+
+        if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
+        {
+            int randPoint = Random.Range(0, totalSize - 1);
+
+            for (int i = 0; i < totalSize; i++) //a partir do ponto selecionado
+            {
+                if (i >= randPoint)
+                {
+                    float temp = this.genotype[i]; // troca todos os genes para a frente do ponto
+                    this.genotype[i] = partner.getGenotype(i);
+                    partner.setGenotype(i, temp);
+                }
+            }
+
+        }
     }
 
 
