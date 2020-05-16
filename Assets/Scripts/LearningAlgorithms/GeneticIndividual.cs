@@ -80,7 +80,7 @@ public class GeneticIndividual : Individual {
     public void MutateGaussian(float probability)
     {
         /* YOUR CODE HERE! */
-        float mean = 0; // média/meio
+        float mean = 0; //média/meio
         float stdev = 0.5f; //desvio padrão
 
         for (int i = 0; i < totalSize; i++)

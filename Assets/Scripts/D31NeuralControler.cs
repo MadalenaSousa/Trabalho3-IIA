@@ -257,7 +257,7 @@ public class D31NeuralControler : MonoBehaviour
         //* YOUR CODE HERE*//
 
         float smallDist = distanceToBall.Average() + ballDistWeight * distancefromBallToAdversaryGoal.Average();
-        float bigDist = distanceToMyGoal.Average() + distancefromBallToMyGoal.Average();
+        float bigDist = distancefromBallToMyGoal.Average();
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;

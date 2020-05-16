@@ -339,6 +339,10 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 0
   ChangePositions: 10
+  goalsRed: 20
+  hitBallRed: 5
+  speedRed: 10
+  ballDistRed: 10
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -369,14 +373,14 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 20
+  numberOfGenerations: 300
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
-  tournamentSize: 3
+  tournamentSize: 10
   mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
