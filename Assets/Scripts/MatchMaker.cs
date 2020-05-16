@@ -29,9 +29,13 @@ public class MatchMaker : MonoBehaviour {
     public bool randomBallPosition = false;
     public bool MovingBall = false;
 
-    
+    [Header("Fitness Weights")]
+    public float goalsRed = 1;
+    public float hitBallRed = 1;
+    public float speedRed = 1;
+    public float ballDistRed = 1;
 
-	void Awake(){
+    void Awake(){
 		// deal with the singleton part
 		if (instance == null) {
 			instance = this;
@@ -155,7 +159,7 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed());
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(goalsRed, hitBallRed, speedRed, ballDistRed));
                 if(bestSimulation.playerBlue != null)
                     Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue());
                 simulating = false;

@@ -28,7 +28,7 @@ public abstract class MetaHeuristic : MonoBehaviour
     protected int maxNumberOfEvaluations = 1;
 
     protected int evaluatedIndividuals;
-	protected string report = "Generation,PopBestRed,PopBestBlue,PopAvgRed,PopAvgBlue,BestOverallRed,BestOverallBlue\n";
+	protected string report = "Generation; PopBestRed; PopBestBlue; PopAvgRed; PopAvgBlue; BestOverallRed; BestOverallBlue\n";
 	protected string bestRed = "";
     protected string bestBlue = "";
     public SelectionMethod selection;

@@ -63,6 +63,12 @@ public class EvolvingControl : MonoBehaviour {
     protected bool singlePlayer;
     protected string textoUpdate;
 
+    [Header("Fitness Weights")]
+    public float goalsRed = 1;
+    public float hitBallRed = 1;
+    public float speedRed = 1;
+    public float ballDistRed = 1;
+
     public void Shuffle(List<int> ts)
     {
         var count = ts.Count;
@@ -283,7 +289,7 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed());
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(goalsRed, hitBallRed, speedRed, ballDistRed));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {

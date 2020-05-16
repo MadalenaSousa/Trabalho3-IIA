@@ -251,18 +251,18 @@ public class D31NeuralControler : MonoBehaviour
         return fitness;
     }
 
-    public float GetScoreRed()
+    public float GetScoreRed(float goalsWeight, float hitBallWeight, float speedWeight, float ballDistWeight)
     {
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall.Average() + distanceToAdversaryGoal.Average() + distancefromBallToAdversaryGoal.Average();
+        float smallDist = distanceToBall.Average() + ballDistWeight * distancefromBallToAdversaryGoal.Average();
         float bigDist = distanceToMyGoal.Average() + distancefromBallToMyGoal.Average();
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goals + hitTheBall + avgSpeed;
+        float fitness = distances + goalsWeight * goals + hitBallWeight * hitTheBall + speedWeight * avgSpeed;
 
         return fitness;
     }
