@@ -369,7 +369,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 10
+  numberOfGenerations: 20
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 

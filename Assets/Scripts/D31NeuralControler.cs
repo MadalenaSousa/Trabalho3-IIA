@@ -239,14 +239,15 @@ public class D31NeuralControler : MonoBehaviour
         // Fitness function for the Blue player. The code to attribute fitness to individuals should be written here.  
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall[distanceToBall.Count-1] + distanceToAdversaryGoal[distanceToAdversaryGoal.Count-1] + distancefromBallToAdversaryGoal[distancefromBallToAdversaryGoal.Count-1];
+        /*float smallDist = distanceToBall[distanceToBall.Count-1] + distanceToAdversaryGoal[distanceToAdversaryGoal.Count-1] + distancefromBallToAdversaryGoal[distancefromBallToAdversaryGoal.Count-1];
         float bigDist = distanceToMyGoal[distanceToMyGoal.Count - 1] + distancefromBallToMyGoal[distancefromBallToMyGoal.Count - 1];
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goals + hitTheBall;
-        
+        float fitness = distances + goals + hitTheBall;*/
+
+        float fitness = 0;
         return fitness;
     }
 
@@ -255,13 +256,13 @@ public class D31NeuralControler : MonoBehaviour
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall[distanceToBall.Count - 1] + distanceToAdversaryGoal[distanceToAdversaryGoal.Count - 1] + distancefromBallToAdversaryGoal[distancefromBallToAdversaryGoal.Count - 1];
-        float bigDist = distanceToMyGoal[distanceToMyGoal.Count - 1] + distancefromBallToMyGoal[distancefromBallToMyGoal.Count - 1];
+        float smallDist = distanceToBall.Average() + distanceToAdversaryGoal.Average() + distancefromBallToAdversaryGoal.Average();
+        float bigDist = distanceToMyGoal.Average() + distancefromBallToMyGoal.Average();
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goals + hitTheBall;
+        float fitness = distances + goals + hitTheBall + avgSpeed;
 
         return fitness;
     }
