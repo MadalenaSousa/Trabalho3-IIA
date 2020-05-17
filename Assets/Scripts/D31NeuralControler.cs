@@ -234,35 +234,52 @@ public class D31NeuralControler : MonoBehaviour
         return simulationTime > this.maxSimulTime;
     }
 
-    public float GetScoreBlue()
+    public float GetScoreBlue(float goalsW, float hitBallW, float speedW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
         // Fitness function for the Blue player. The code to attribute fitness to individuals should be written here.  
         //* YOUR CODE HERE*//
 
-        /*float smallDist = distanceToBall[distanceToBall.Count-1] + distanceToAdversaryGoal[distanceToAdversaryGoal.Count-1] + distancefromBallToAdversaryGoal[distancefromBallToAdversaryGoal.Count-1];
-        float bigDist = distanceToMyGoal[distanceToMyGoal.Count - 1] + distancefromBallToMyGoal[distancefromBallToMyGoal.Count - 1];
+        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
+                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+
+        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
+
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goals + hitTheBall;*/
+        float hitWallPenalize = 0;
+        if (hitTheWall > 3)
+        {
+            hitWallPenalize = 100;
+        }
 
-        float fitness = 0;
+        float fitness = distances + goalsW * goals + hitBallW * hitTheBall + speedW * maxSpeed - hitWallPenalize;
+
         return fitness;
     }
 
-    public float GetScoreRed(float goalsWeight, float hitBallWeight, float speedWeight, float ballDistWeight)
+    public float GetScoreRed(float goalsW, float hitBallW, float speedW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall.Average() + ballDistWeight * distancefromBallToAdversaryGoal.Average();
-        float bigDist = distancefromBallToMyGoal.Average();
+        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() + 
+                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+
+        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
+
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goalsWeight * goals + hitBallWeight * hitTheBall + speedWeight * avgSpeed;
+        float hitWallPenalize = 0;
+        if(hitTheWall > 3)
+        {
+            hitWallPenalize = 100;
+        }
+
+        float fitness = distances + goalsW * goals + hitBallW * hitTheBall + speedW * maxSpeed - hitWallPenalize;
 
         return fitness;
     }

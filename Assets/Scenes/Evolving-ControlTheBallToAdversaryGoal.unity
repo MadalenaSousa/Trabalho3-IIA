@@ -339,10 +339,14 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 0
   ChangePositions: 10
-  goalsRed: 20
-  hitBallRed: 5
-  speedRed: 10
-  ballDistRed: 10
+  goalsRed: 10
+  hitBallRed: 1
+  speedRed: 5
+  ballDistToAdversaryGoalRed: 3
+  myDistToBallRed: 4
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 5
+  myDistToMyGoalRed: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +377,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 300
+  numberOfGenerations: 100
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
