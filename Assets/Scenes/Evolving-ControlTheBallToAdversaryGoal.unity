@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -339,10 +339,17 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 0
   ChangePositions: 10
-  goalsRed: 20
-  hitBallRed: 5
-  speedRed: 10
-  ballDistRed: 10
+  DistToBallWeight: 0.2
+  DistToMyGoalWeight: 0.6
+  DistToAdversaryGoalWeight: 0.2
+  DistToAdversaryWeight: 0.7
+  DistBallToAdversaryGoalWeight: 0
+  DistBallToMyGoalWeight: 1
+  DistToClosestWallWeight: 0.2
+  GoalsOnAdversaryGoalWeight: 1
+  GoalsOnMyGoalWeight: 0
+  hitBallWeight: 1
+  speedWeight: 200
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0

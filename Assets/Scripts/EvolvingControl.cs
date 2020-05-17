@@ -64,10 +64,17 @@ public class EvolvingControl : MonoBehaviour {
     protected string textoUpdate;
 
     [Header("Fitness Weights")]
-    public float goalsRed = 1;
-    public float hitBallRed = 1;
-    public float speedRed = 1;
-    public float ballDistRed = 1;
+    public float DistToBallWeight = 1;
+    public float DistToMyGoalWeight = 1;
+    public float DistToAdversaryGoalWeight = 1;
+    public float DistToAdversaryWeight = 1;
+    public float DistBallToAdversaryGoalWeight = 1;
+    public float DistBallToMyGoalWeight = 1;
+    public float DistToClosestWallWeight = 1;
+    public float GoalsOnAdversaryGoalWeight = 1;
+    public float GoalsOnMyGoalWeight = 1;
+    public float hitBallWeight = 1;
+    public float speedWeight = 1;
 
     public void Shuffle(List<int> ts)
     {
@@ -289,7 +296,7 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(goalsRed, hitBallRed, speedRed, ballDistRed));
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(DistToBallWeight, DistToMyGoalWeight, DistToAdversaryGoalWeight, DistToAdversaryWeight, DistBallToAdversaryGoalWeight, DistBallToMyGoalWeight, DistToClosestWallWeight, GoalsOnAdversaryGoalWeight, GoalsOnMyGoalWeight, hitBallWeight, speedWeight));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {

@@ -251,18 +251,22 @@ public class D31NeuralControler : MonoBehaviour
         return fitness;
     }
 
-    public float GetScoreRed(float goalsWeight, float hitBallWeight, float speedWeight, float ballDistWeight)
+    public float GetScoreRed(float DistToBallWeight, float DistToMyGoalWeight, float DistToAdversaryGoalWeight, float DistToAdversaryWeight, float DistBallToAdversaryGoalWeight, float DistBallToMyGoalWeight, float DistToClosestWallWeight, float GoalsOnAdversaryGoalWeight, float GoalsOnMyGoalWeight, float hitBallWeight, float speedWeight)
     {
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall.Average() + ballDistWeight * distancefromBallToAdversaryGoal.Average();
-        float bigDist = distancefromBallToMyGoal.Average();
-        float distances = bigDist - smallDist;
+        float DistToBall = distanceToBall.Average();
+        float DistToMyGoal = distanceToMyGoal.Average();
+        float DistToAdversaryGoal = distanceToAdversaryGoal.Average();
+        float DistToAdversary = distanceToAdversary.Average();
+        float DistBallToAdversaryGoal = distancefromBallToAdversaryGoal.Average();
+        float DistBallToMyGoal = distancefromBallToMyGoal.Average();
+        float DistToClosestWall = distanceToClosestWall.Average();
 
-        float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
 
-        float fitness = distances + goalsWeight * goals + hitBallWeight * hitTheBall + speedWeight * avgSpeed;
+        float fitness = DistToBallWeight * DistToBall + DistToMyGoal * DistToMyGoalWeight + DistToAdversaryGoal * DistToAdversaryGoalWeight + DistToAdversary * DistToAdversaryWeight + DistBallToAdversaryGoal * DistBallToAdversaryGoalWeight + DistBallToMyGoal * DistBallToMyGoalWeight + DistToClosestWall * DistToClosestWallWeight + GoalsOnMyGoal * GoalsOnMyGoalWeight + GoalsOnAdversaryGoal * GoalsOnAdversaryGoalWeight + hitTheBall * hitBallWeight + avgSpeed * speedWeight;
+
 
         return fitness;
     }

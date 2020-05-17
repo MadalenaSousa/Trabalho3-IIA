@@ -30,11 +30,19 @@ public class MatchMaker : MonoBehaviour {
     public bool MovingBall = false;
 
     [Header("Fitness Weights")]
-    public float goalsRed = 1;
-    public float hitBallRed = 1;
-    public float speedRed = 1;
-    public float ballDistRed = 1;
+    public float DistToBallWeight = 1;
+    public float DistToMyGoalWeight = 1;
+    public float DistToAdversaryGoalWeight = 1;
+    public float DistToAdversaryWeight = 1;
+    public float DistBallToAdversaryGoalWeight = 1;
+    public float DistBallToMyGoalWeight = 1;
+    public float DistToClosestWallWeight = 1;
+    public float GoalsOnAdversaryGoalWeight = 1;
+    public float GoalsOnMyGoalWeight = 1;
+    public float hitBallWeight = 1;
+    public float speedWeight = 1;
 
+   
     void Awake(){
 		// deal with the singleton part
 		if (instance == null) {
@@ -159,7 +167,7 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(goalsRed, hitBallRed, speedRed, ballDistRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(DistToBallWeight, DistToMyGoalWeight, DistToAdversaryGoalWeight, DistToAdversaryWeight, DistBallToAdversaryGoalWeight, DistBallToMyGoalWeight, DistToClosestWallWeight, GoalsOnAdversaryGoalWeight, GoalsOnMyGoalWeight, hitBallWeight, speedWeight));
                 if(bestSimulation.playerBlue != null)
                     Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue());
                 simulating = false;
