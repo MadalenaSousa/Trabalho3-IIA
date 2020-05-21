@@ -256,8 +256,8 @@ public class D31NeuralControler : MonoBehaviour
         // Fitness function for the Red player. The code to attribute fitness to individuals should be written here. 
         //* YOUR CODE HERE*//
 
-        float smallDist = distanceToBall.Average() + ballDistWeight * distancefromBallToAdversaryGoal.Average();
-        float bigDist = distancefromBallToMyGoal.Average();
+        float smallDist = distancefromBallToAdversaryGoal.Average();
+        float bigDist = ballDistWeight * distancefromBallToMyGoal.Average();
         float distances = bigDist - smallDist;
 
         float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
