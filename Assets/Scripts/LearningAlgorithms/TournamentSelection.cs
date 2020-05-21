@@ -28,12 +28,11 @@ public class TournamentSelection : SelectionMethod
 
 	public Individual tournamentSelection(List<Individual> population, int tournamentSize)
 	{
-		//* YOUR CODE HERE *//
 		Individual best = null;
 
 		for (int i = 0; i < tournamentSize; i++)
 		{
-			Individual ind = population[(int)Random.Range(0, population.Count - 1)]; // escolho um individuo aleatorio da população
+			Individual ind = population[(int)Random.Range(0, population.Count)]; // escolho um individuo aleatorio da população
 
 			if (best == null || ind.Fitness > best.Fitness) // se ainda não tiver avaliações ou se a fitness do individuo for melhor que a melhor avaliação
 			{

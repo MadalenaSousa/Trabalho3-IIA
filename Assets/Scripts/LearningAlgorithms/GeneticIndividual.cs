@@ -79,8 +79,7 @@ public class GeneticIndividual : Individual {
     
     public void MutateGaussian(float probability)
     {
-        /* YOUR CODE HERE! */
-        float mean = 0; // média/meio
+        float mean = 0; //média/meio
         float stdev = 0.5f; //desvio padrão
 
         for (int i = 0; i < totalSize; i++)
@@ -94,8 +93,6 @@ public class GeneticIndividual : Individual {
 
     public override void Crossover(Individual partner, float probability)
     {
-        /* YOUR CODE HERE! */
-        /* Nota: O crossover deverá alterar ambos os indivíduos */
 
         if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
         {
