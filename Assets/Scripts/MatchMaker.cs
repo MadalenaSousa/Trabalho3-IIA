@@ -29,10 +29,11 @@ public class MatchMaker : MonoBehaviour {
     public bool randomBallPosition = false;
     public bool MovingBall = false;
 
+    public EvolvingControl.FitnessType fitnessBehaviour = EvolvingControl.FitnessType.kick;
+
     [Header("Red Fitness Weights")]
     public float goalsRed = 1;
     public float hitBallRed = 1;
-    public float speedRed = 1;
     public float ballDistToAdversaryGoalRed = 1;
     public float myDistToBallRed = 1;
     public float myDistToAdversaryGoalRed = 1;
@@ -42,7 +43,6 @@ public class MatchMaker : MonoBehaviour {
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
     public float hitBallBlue = 1;
-    public float speedBlue = 1;
     public float ballDistToAdversaryGoalBlue = 1;
     public float myDistToBallBlue = 1;
     public float myDistToAdversaryGoalBlue = 1;
@@ -173,9 +173,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(goalsRed, hitBallRed, speedRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(goalsBlue, hitBallBlue, speedBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}
