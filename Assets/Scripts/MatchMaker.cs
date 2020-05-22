@@ -39,8 +39,9 @@ public class MatchMaker : MonoBehaviour {
     public float myDistToAdversaryGoalRed = 1;
     public float ballDistToMyGoalRed = 1;
     public float myDistToMyGoalRed = 1;
+    public float wallDistRed = 1;
 
-    [Header("Blue Fitness Weights")]
+   [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
     public float hitBallBlue = 1;
     public float ballDistToAdversaryGoalBlue = 1;
@@ -48,6 +49,8 @@ public class MatchMaker : MonoBehaviour {
     public float myDistToAdversaryGoalBlue = 1;
     public float ballDistToMyGoalBlue = 1;
     public float myDistToMyGoalBlue = 1;
+    public float wallDistBlue = 1;
+
 
     void Awake(){
 		// deal with the singleton part
@@ -173,9 +176,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, wallDistRed));
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, wallDistBlue));
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}

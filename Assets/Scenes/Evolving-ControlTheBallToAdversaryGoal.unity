@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -334,27 +334,28 @@ MonoBehaviour:
     type: 3}
   SimultaneousSimulations: 20
   RandomSeed: 50
-  randomRedPlayerPosition: 0
+  randomRedPlayerPosition: 1
   randomBluePlayerPosition: 0
-  randomBallPosition: 0
+  randomBallPosition: 1
   movingBall: 0
   ChangePositions: 10
+  fitnessBehaviour: 0
   goalsRed: 10
-  hitBallRed: 1
-  speedRed: 5
-  ballDistToAdversaryGoalRed: 3
-  myDistToBallRed: 4
-  myDistToAdversaryGoalRed: 0
-  ballDistToMyGoalRed: 5
-  myDistToMyGoalRed: 0
+  hitBallRed: 5
+  ballDistToAdversaryGoalRed: 0.01
+  myDistToBallRed: 0.1
+  myDistToAdversaryGoalRed: 1.5
+  ballDistToMyGoalRed: 2
+  myDistToMyGoalRed: 1
+  wallDistRed: 2
   goalsBlue: 1
   hitBallBlue: 1
-  speedBlue: 1
   ballDistToAdversaryGoalBlue: 1
   myDistToBallBlue: 1
   myDistToAdversaryGoalBlue: 1
   ballDistToMyGoalBlue: 1
   myDistToMyGoalBlue: 1
+  wallDistBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 100
+  numberOfGenerations: 200
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
