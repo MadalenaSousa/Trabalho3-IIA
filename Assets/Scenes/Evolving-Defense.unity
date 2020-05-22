@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -339,6 +339,21 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 1
   ChangePositions: 10
+  fitnessBehaviour: 2
+  goalsRed: -5
+  hitBallRed: 1
+  ballDistToAdversaryGoalRed: 0
+  myDistToBallRed: 2
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 0
+  myDistToMyGoalRed: 0
+  goalsBlue: 1
+  hitBallBlue: 1
+  ballDistToAdversaryGoalBlue: 1
+  myDistToBallBlue: 1
+  myDistToAdversaryGoalBlue: 1
+  ballDistToMyGoalBlue: 1
+  myDistToMyGoalBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -360,7 +375,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
   m_Name: 
@@ -369,7 +384,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 10
+  numberOfGenerations: 200
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
@@ -377,10 +392,10 @@ MonoBehaviour:
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.15
+  mutationProbabilityRedPopulation: 0.05
   crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0.15
+  mutationProbabilityBluePopulation: 0.05
   crossoverProbabilityBluePopulation: 0.9
   elitistBlue: 1
 --- !u!114 &1140463233
@@ -390,7 +405,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
   m_Name: 
