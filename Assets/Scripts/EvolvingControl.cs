@@ -304,7 +304,7 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {
