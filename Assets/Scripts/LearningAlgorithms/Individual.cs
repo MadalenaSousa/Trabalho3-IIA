@@ -37,7 +37,6 @@ public abstract class Individual {
 		genotype[index] = value;
 	}
 
-
 	public void SetEvaluations(float quality)
     {
         evaluations.Insert(completedEvaluations, quality);

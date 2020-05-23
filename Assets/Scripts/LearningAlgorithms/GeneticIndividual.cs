@@ -93,7 +93,6 @@ public class GeneticIndividual : Individual {
 
     public override void Crossover(Individual partner, float probability)
     {
-
         if (Random.Range(0.0f, 1.0f) < probability) // de vez em quando, probabilisticamente, entro no if
         {
             int randPoint = Random.Range(0, totalSize - 1);
