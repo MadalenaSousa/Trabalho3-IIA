@@ -28,18 +28,7 @@ public class TournamentSelection : SelectionMethod
 
 	public Individual tournamentSelection(List<Individual> population, int tournamentSize)
 	{
-		Individual best = null;
-
-		for (int i = 0; i < tournamentSize; i++)
-		{
-			Individual ind = population[(int)Random.Range(0, population.Count)]; // escolho um individuo aleatorio da população
-
-			if (best == null || ind.Fitness > best.Fitness) // se ainda não tiver avaliações ou se a fitness do individuo for melhor que a melhor avaliação
-			{
-				best = ind.Clone(); // reproduzo o individuo
-			}
-		}
-
-		return best;
+		//* YOUR CODE HERE *//
+		throw new System.NotImplementedException();
 	}
 }
