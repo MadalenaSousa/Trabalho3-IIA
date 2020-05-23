@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -339,22 +339,6 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 0
   ChangePositions: 10
-  goalsRed: 10
-  hitBallRed: 1
-  speedRed: 5
-  ballDistToAdversaryGoalRed: 3
-  myDistToBallRed: 4
-  myDistToAdversaryGoalRed: 0
-  ballDistToMyGoalRed: 5
-  myDistToMyGoalRed: 0
-  goalsBlue: 10
-  hitBallBlue: 1
-  speedBlue: 5
-  ballDistToAdversaryGoalBlue: 3
-  myDistToBallBlue: 4
-  myDistToAdversaryGoalBlue: 0
-  ballDistToMyGoalBlue: 5
-  myDistToMyGoalBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -376,7 +360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
   m_Name: 
@@ -385,14 +369,14 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 100
+  numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
-  tournamentSize: 10
+  tournamentSize: 3
   mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
@@ -406,7 +390,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
   m_Name: 
