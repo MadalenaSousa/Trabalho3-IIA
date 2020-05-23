@@ -340,10 +340,10 @@ MonoBehaviour:
   movingBall: 1
   ChangePositions: 1
   fitnessBehaviour: 2
-  goalsRed: -5
+  goalsRed: 0
   hitBallRed: 1
   ballDistToAdversaryGoalRed: 0
-  myDistToBallRed: 2
+  myDistToBallRed: 0
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
   myDistToMyGoalRed: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 100
+  numberOfGenerations: 50
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
@@ -393,10 +393,10 @@ MonoBehaviour:
   exportSuffix: _teste
   tournamentSize: 3
   mutationProbabilityRedPopulation: 0.05
-  crossoverProbabilityRedPopulation: 0.9
+  crossoverProbabilityRedPopulation: 0.8
   elitistRed: 1
   mutationProbabilityBluePopulation: 0.05
-  crossoverProbabilityBluePopulation: 0.9
+  crossoverProbabilityBluePopulation: 0.8
   elitistBlue: 1
 --- !u!114 &1140463233
 MonoBehaviour:

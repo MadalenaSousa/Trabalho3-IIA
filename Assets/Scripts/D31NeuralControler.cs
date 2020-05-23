@@ -224,7 +224,7 @@ public class D31NeuralControler : MonoBehaviour
     {
         // You can modify this to change the length of the simulation of an individual before evaluating it.
         // (a variavel maxSimulTime está por defeito a 30 segundos)
-        this.maxSimulTime = 20; // Descomentem e alterem aqui valor do maxSimultime se necessário.
+        this.maxSimulTime = 15; // Descomentem e alterem aqui valor do maxSimultime se necessário.
         return simulationTime > this.maxSimulTime;
     }
 
@@ -277,7 +277,7 @@ public class D31NeuralControler : MonoBehaviour
 
         float defensefitness = distances + goalsW * GoalsOnMyGoal + hitBallW * hitTheBall;
 
-        return defensefitness;
+        return hitTheBall  + distancefromBallToMyGoal.Average() - GoalsOnMyGoal;
     }
 
     public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
