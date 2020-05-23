@@ -27,7 +27,17 @@ public abstract class Individual {
 	
 	}
 
-    public void SetEvaluations(float quality)
+	public float getGenotype(int index)
+	{
+		return genotype[index];
+	}
+
+	public void setGenotype(int index, float value)
+	{
+		genotype[index] = value;
+	}
+
+	public void SetEvaluations(float quality)
     {
         evaluations.Insert(completedEvaluations, quality);
         completedEvaluations++;
