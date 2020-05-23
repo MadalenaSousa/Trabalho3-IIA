@@ -334,28 +334,11 @@ MonoBehaviour:
     type: 3}
   SimultaneousSimulations: 20
   RandomSeed: 50
-  randomRedPlayerPosition: 1
+  randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
-  randomBallPosition: 1
+  randomBallPosition: 0
   movingBall: 0
   ChangePositions: 10
-  fitnessBehaviour: 0
-  goalsRed: 10
-  hitBallRed: 5
-  ballDistToAdversaryGoalRed: 0.01
-  myDistToBallRed: 0.1
-  myDistToAdversaryGoalRed: 1.5
-  ballDistToMyGoalRed: 2
-  myDistToMyGoalRed: 1
-  wallDistRed: 2
-  goalsBlue: 1
-  hitBallBlue: 1
-  ballDistToAdversaryGoalBlue: 1
-  myDistToBallBlue: 1
-  myDistToAdversaryGoalBlue: 1
-  ballDistToMyGoalBlue: 1
-  myDistToMyGoalBlue: 1
-  wallDistBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
   m_Name: 
@@ -386,14 +369,14 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 200
+  numberOfGenerations: 10
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
-  tournamentSize: 5
+  tournamentSize: 3
   mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
@@ -407,7 +390,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
   m_Name: 
