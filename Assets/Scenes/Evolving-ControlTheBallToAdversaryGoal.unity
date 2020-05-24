@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -340,13 +340,14 @@ MonoBehaviour:
   movingBall: 0
   ChangePositions: 10
   fitnessBehaviour: 0
-  goalsRed: 1
-  hitBallRed: 1
-  ballDistToAdversaryGoalRed: 1
-  myDistToBallRed: 1
-  myDistToAdversaryGoalRed: 1
-  ballDistToMyGoalRed: 1
+  goalsRed: 10
+  hitBallRed: 5
+  ballDistToAdversaryGoalRed: 0.01
+  myDistToBallRed: 0.1
+  myDistToAdversaryGoalRed: 1.5
+  ballDistToMyGoalRed: 2
   myDistToMyGoalRed: 1
+  myDistToWallRed: 2
   goalsBlue: 1
   hitBallBlue: 1
   ballDistToAdversaryGoalBlue: 1
@@ -354,6 +355,7 @@ MonoBehaviour:
   myDistToAdversaryGoalBlue: 1
   ballDistToMyGoalBlue: 1
   myDistToMyGoalBlue: 1
+  myDistToWallBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -384,10 +386,10 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 10
-  seedPopulationFromFile: 0
-  pathToFileRed: 
-  pathToFileBlue: 
+  numberOfGenerations: 500
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
+  pathToFileBlue: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
   generation: 0
   logFilename: 
   exportSuffix: _teste
@@ -395,8 +397,8 @@ MonoBehaviour:
   mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0.15
-  crossoverProbabilityBluePopulation: 0.9
+  mutationProbabilityBluePopulation: 0.05
+  crossoverProbabilityBluePopulation: 0.5
   elitistBlue: 1
 --- !u!114 &1140463233
 MonoBehaviour:
