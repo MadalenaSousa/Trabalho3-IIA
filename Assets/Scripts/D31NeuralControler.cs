@@ -266,18 +266,17 @@ public class D31NeuralControler : MonoBehaviour
         return fitness;
     }
 
-    public float defendFitness(float goalsW, float hitBallW, float hitTheWall, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
+    public float defendFitness(float goalsW, float hitBallW, float hitWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
-        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
-                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+        /*float distances = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
+                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average() + ballDistToMyGoalW * distancefromBallToMyGoal.Average() + 
+                        myDistToMyGoalW * distanceToMyGoal.Average();*/
 
-        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
-
-        float distances = bigDist - smallDist;
-
-        float defensefitness = distances + goalsW * GoalsOnMyGoal + hitBallW * hitTheBall;
-
-        return defensefitness;
+        float defensefitness = myDistToBallW * distanceToBall.Average() + myDistToMyGoalW * distanceToMyGoal.Average() + myDistToAdversaryGoal * distanceToAdversaryGoal.Average() +
+                               ballDistToMyGoalW * distancefromBallToMyGoal.Average() + ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + hitBallW + hitTheBall +
+                               goalsW * GoalsOnMyGoal;
+   
+        return -1 * distanceToBall.Average();
     }
 
     public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
