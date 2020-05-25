@@ -29,7 +29,8 @@ public class MatchMaker : MonoBehaviour {
     public bool randomBallPosition = false;
     public bool MovingBall = false;
 
-    public EvolvingControl.FitnessType fitnessBehaviour = EvolvingControl.FitnessType.kick;
+    public EvolvingControl.FitnessTypeRed fitnessBehaviourRed = EvolvingControl.FitnessTypeRed.kick;
+    public EvolvingControl.FitnessTypeBlue fitnessBehaviourBlue = EvolvingControl.FitnessTypeBlue.kick;
 
     [Header("Red Fitness Weights")]
     public float goalsRed = 0;
@@ -175,9 +176,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviourRed, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviourBlue, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}
