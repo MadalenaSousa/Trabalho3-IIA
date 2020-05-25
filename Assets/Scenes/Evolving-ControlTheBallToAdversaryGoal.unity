@@ -340,10 +340,10 @@ MonoBehaviour:
   movingBall: 0
   ChangePositions: 10
   fitnessBehaviour: 0
-  goalsRed: 10
-  hitBallRed: 5
+  goalsRed: 2
+  hitBallRed: 1
   ballDistToAdversaryGoalRed: 0.01
-  myDistToBallRed: 0.1
+  myDistToBallRed: 0.05
   myDistToAdversaryGoalRed: 1.5
   ballDistToMyGoalRed: 2
   myDistToMyGoalRed: 1
@@ -386,10 +386,10 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 500
-  seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
-  pathToFileBlue: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
+  numberOfGenerations: 300
+  seedPopulationFromFile: 0
+  pathToFileRed: 
+  pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
