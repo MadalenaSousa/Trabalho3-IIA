@@ -69,6 +69,7 @@ public class EvolvingControl : MonoBehaviour {
     [Header("Red Fitness Weights")]
     public float goalsRed = 1;
     public float hitBallRed = 1;
+    public float hitWallRed = 1;
     public float ballDistToAdversaryGoalRed = 1;
     public float myDistToBallRed = 1;
     public float myDistToAdversaryGoalRed = 1;
@@ -79,6 +80,7 @@ public class EvolvingControl : MonoBehaviour {
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
     public float hitBallBlue = 1;
+    public float hitWallBlue = 1;
     public float ballDistToAdversaryGoalBlue = 1;
     public float myDistToBallBlue = 1;
     public float myDistToAdversaryGoalBlue = 1;
@@ -307,11 +309,11 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {
-                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
+                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
                         }
 						//
 						
