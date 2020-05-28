@@ -242,7 +242,7 @@ public class D31NeuralControler : MonoBehaviour
         }
         else if (behaviour == EvolvingControl.FitnessTypeBlue.Defend)
         {
-            fitness = defendFitness(goalsW, hitBallW, hitTheWallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
         }
 
         return fitness;
@@ -260,23 +260,95 @@ public class D31NeuralControler : MonoBehaviour
             fitness = controlFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
         } else if(behaviour == EvolvingControl.FitnessTypeRed.Defend)
         {
-            fitness = defendFitness(goalsW, hitBallW, hitTheWallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
         }
 
         return fitness;
     }
 
-    public float defendFitness(float goalsW, float hitBallW, float hitWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
+    public float defendFitness(float goalsW, float hitBallW, float myDistToBallW, float myDistToMyGoalW)
     {
-        /*float distances = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
-                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average() + ballDistToMyGoalW * distancefromBallToMyGoal.Average() + 
-                        myDistToMyGoalW * distanceToMyGoal.Average();*/
+        //PRINT DOS VALORES
+         
+        /*for (int i = 0; i < distanceToBall.Count; i++)
+        {
+            print("Distance To Ball: " + distanceToBall[i]);
+        }
 
-        float defensefitness = myDistToBallW * distanceToBall.Average() + myDistToMyGoalW * distanceToMyGoal.Average() + myDistToAdversaryGoal * distanceToAdversaryGoal.Average() +
-                               ballDistToMyGoalW * distancefromBallToMyGoal.Average() + ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + hitBallW + hitTheBall +
-                               goalsW * GoalsOnMyGoal;
-   
-        return -1 * distanceToBall.Average();
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            print("Distance To My Goal: " + distanceToMyGoal[i]);
+        }
+
+        for (int i = 0; i < distancefromBallToMyGoal.Count; i++)
+        {
+            print("Distance From Ball To My Goal: " + distancefromBallToMyGoal[i]);
+        }
+
+        print("Distance Travelled: " + distanceTravelled);
+        print("Hit The Ball: " + hitTheBall);
+        print("Goals On My Goal: " + GoalsOnMyGoal);*/
+
+
+        //-----My Dist To Ball
+        float distToBallCount = 0; //quero que a distância à bola seja menor que 0.1 mais vezes
+        
+        for(int i = 0; i < distanceToBall.Count; i++)
+        {
+            if(distanceToBall[i] < 0.1)
+            {
+                distToBallCount++; //*50
+            }
+        }
+
+        //-----My Dist To Goal
+        float insideGoalCount = 0;
+        
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            if(distanceToMyGoal[i] == 0)
+            {
+                insideGoalCount++;
+            }
+        }
+
+        float distToMyGoalValue;
+
+        if(insideGoalCount > 2) //penalizo se ele tiver mais que 2 vezes dentro da baliza
+        {
+            distToMyGoalValue = myDistToMyGoalW * -10; //*10
+        } else
+        {
+            distToMyGoalValue = myDistToMyGoalW * 10;
+        }
+
+        //-----Goals
+        float goalsValue; //quero recompensar quando defendem e penalizar quando sofrem golo
+        
+        if (GoalsOnMyGoal == 0) 
+        {
+            goalsValue = goalsW * 200; //*1000
+        }
+        else
+        {
+            goalsValue = -goalsW * GoalsOnMyGoal;
+        }
+
+        //-----Hit Ball
+        float hitBallValue; //quero penalizar quando não tocam na bola e recompensar quando tocam
+        
+        if (hitTheBall == 0)
+        {
+            hitBallValue = -hitBallW * 200; //*50
+        } else
+        {
+            hitBallValue = hitBallW * hitTheBall;
+        }
+
+        //-----FINAL FITNESS SUM
+        float fitness = myDistToBallW * distToBallCount + distToMyGoalValue + goalsValue + hitBallValue;
+
+        return fitness;
     }
 
     public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
@@ -309,6 +381,19 @@ public class D31NeuralControler : MonoBehaviour
         float controlfitness = distances + goalsW * goals + hitBallW * hitTheBall;
 
         return controlfitness;
+    }
+
+    public float StandartDev(List<float> values)
+    {
+        float mean = values.Sum() / values.Count;
+        float sumSquares = 0;
+
+        for(int i = 0; i < values.Count; i++)
+        {
+            sumSquares = sumSquares + ((values[i] - mean) * (values[i] - mean));
+        }
+
+        return (float)Math.Sqrt(sumSquares / (values.Count - 1));
     }
 
 }
