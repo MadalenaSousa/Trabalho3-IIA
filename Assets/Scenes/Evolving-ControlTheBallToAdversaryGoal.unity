@@ -340,10 +340,10 @@ MonoBehaviour:
   movingBall: 0
   ChangePositions: 1
   fitnessBehaviour: 0
-  goalsRed: 1
-  hitBallRed: 1
-  ballDistToAdversaryGoalRed: 1
-  myDistToBallRed: 1
+  goalsRed: 100
+  hitBallRed: 100
+  ballDistToAdversaryGoalRed: 50
+  myDistToBallRed: 50
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
   myDistToMyGoalRed: 0
@@ -396,8 +396,8 @@ MonoBehaviour:
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.05
-  crossoverProbabilityRedPopulation: 0.5
+  mutationProbabilityRedPopulation: 0.03
+  crossoverProbabilityRedPopulation: 0.3
   elitistRed: 0
   mutationProbabilityBluePopulation: 0.05
   crossoverProbabilityBluePopulation: 0.5

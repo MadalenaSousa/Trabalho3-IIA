@@ -348,12 +348,16 @@ public class D31NeuralControler : MonoBehaviour
 
         if (GoalsOnAdversaryGoal == 0)
         {
-            goalsValue = goalsW * 200;
+            goalsValue = -goalsW * 200;
         }
         else
         {
-            goalsValue = -goalsW * GoalsOnAdversaryGoal;
+            goalsValue = goalsW * GoalsOnAdversaryGoal;
         }
+
+
+
+
 
 
         float kickfitness = goalsValue  + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
