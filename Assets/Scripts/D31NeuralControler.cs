@@ -322,7 +322,7 @@ public class D31NeuralControler : MonoBehaviour
 
         float distBallToAdversaryGoalCount = 0;
 
-        for (int i = 0; i < distanceToBall.Count; i++)
+        for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
         {
 
             if (distancefromBallToAdversaryGoal[i] < 0.1)
