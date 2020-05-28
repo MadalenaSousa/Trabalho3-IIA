@@ -75,6 +75,7 @@ public class EvolvingControl : MonoBehaviour {
     public float ballDistToMyGoalRed = 1;
     public float myDistToMyGoalRed = 1;
     public float myDistToWallRed = 1;
+    public float hitWallRed = 1;
 
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
@@ -85,6 +86,8 @@ public class EvolvingControl : MonoBehaviour {
     public float ballDistToMyGoalBlue = 1;
     public float myDistToMyGoalBlue = 1;
     public float myDistToWallBlue = 1;
+    public float hitWallBlue = 1;
+
 
 
     public void Shuffle(List<int> ts)
@@ -307,11 +310,11 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed, hitWallRed));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {
-                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
+                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue, hitWallBlue));
                         }
 						//
 						

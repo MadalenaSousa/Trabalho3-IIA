@@ -334,20 +334,21 @@ MonoBehaviour:
     type: 3}
   SimultaneousSimulations: 20
   RandomSeed: 50
-  randomRedPlayerPosition: 0
+  randomRedPlayerPosition: 1
   randomBluePlayerPosition: 0
-  randomBallPosition: 0
+  randomBallPosition: 1
   movingBall: 0
-  ChangePositions: 10
+  ChangePositions: 1
   fitnessBehaviour: 0
-  goalsRed: 2
+  goalsRed: 1
   hitBallRed: 1
-  ballDistToAdversaryGoalRed: 0.01
-  myDistToBallRed: 0.05
-  myDistToAdversaryGoalRed: 1.5
-  ballDistToMyGoalRed: 2
-  myDistToMyGoalRed: 1
-  myDistToWallRed: 2
+  ballDistToAdversaryGoalRed: 1
+  myDistToBallRed: 1
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 0
+  myDistToMyGoalRed: 0
+  myDistToWallRed: 0
+  hitWallRed: 0
   goalsBlue: 1
   hitBallBlue: 1
   ballDistToAdversaryGoalBlue: 1
@@ -356,6 +357,7 @@ MonoBehaviour:
   ballDistToMyGoalBlue: 1
   myDistToMyGoalBlue: 1
   myDistToWallBlue: 1
+  hitWallBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +388,7 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 300
+  numberOfGenerations: 1000
   seedPopulationFromFile: 0
   pathToFileRed: 
   pathToFileBlue: 
@@ -394,12 +396,12 @@ MonoBehaviour:
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.15
-  crossoverProbabilityRedPopulation: 0.9
-  elitistRed: 1
+  mutationProbabilityRedPopulation: 0.05
+  crossoverProbabilityRedPopulation: 0.5
+  elitistRed: 0
   mutationProbabilityBluePopulation: 0.05
   crossoverProbabilityBluePopulation: 0.5
-  elitistBlue: 1
+  elitistBlue: 0
 --- !u!114 &1140463233
 MonoBehaviour:
   m_ObjectHideFlags: 0

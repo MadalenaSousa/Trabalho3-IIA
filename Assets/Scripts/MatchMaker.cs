@@ -40,6 +40,9 @@ public class MatchMaker : MonoBehaviour {
     public float ballDistToMyGoalRed = 1;
     public float myDistToMyGoalRed = 1;
     public float myDistToWallRed = 1;
+    public float hitWallRed = 1;
+
+
 
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
@@ -50,6 +53,8 @@ public class MatchMaker : MonoBehaviour {
     public float ballDistToMyGoalBlue = 1;
     public float myDistToMyGoalBlue = 1;
     public float myDistToWallBlue = 1;
+    public float hitWallBlue = 1;
+
 
 
     void Awake(){
@@ -176,9 +181,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed, hitWallRed));
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue, hitWallBlue));
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}
