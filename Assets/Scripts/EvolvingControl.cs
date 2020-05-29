@@ -63,29 +63,30 @@ public class EvolvingControl : MonoBehaviour {
     protected bool singlePlayer;
     protected string textoUpdate;
 
-    public enum FitnessType { kick, Control, Defend };
-    public FitnessType fitnessBehaviour = FitnessType.kick;
+    public enum FitnessTypeRed { kick, Control, Defend };
+    public FitnessTypeRed fitnessBehaviourRed = FitnessTypeRed.kick;
+    public enum FitnessTypeBlue { kick, Control, Defend };
+    public FitnessTypeBlue fitnessBehaviourBlue = FitnessTypeBlue.kick;
 
     [Header("Red Fitness Weights")]
-    public float goalsRed = 1;
-    public float hitBallRed = 1;
-    public float ballDistToAdversaryGoalRed = 1;
-    public float myDistToBallRed = 1;
-    public float myDistToAdversaryGoalRed = 1;
-    public float ballDistToMyGoalRed = 1;
-    public float myDistToMyGoalRed = 1;
-    public float myDistToWallRed = 1;
+    public float goalsRed = 0;
+    public float hitBallRed = 0;
+    public float hitWallRed = 0;
+    public float ballDistToAdversaryGoalRed = 0;
+    public float myDistToBallRed = 0;
+    public float myDistToAdversaryGoalRed = 0;
+    public float ballDistToMyGoalRed = 0;
+    public float myDistToMyGoalRed = 0;
 
     [Header("Blue Fitness Weights")]
-    public float goalsBlue = 1;
-    public float hitBallBlue = 1;
-    public float ballDistToAdversaryGoalBlue = 1;
-    public float myDistToBallBlue = 1;
-    public float myDistToAdversaryGoalBlue = 1;
-    public float ballDistToMyGoalBlue = 1;
-    public float myDistToMyGoalBlue = 1;
-    public float myDistToWallBlue = 1;
-
+    public float goalsBlue = 0;
+    public float hitBallBlue = 0;
+    public float hitWallBlue = 0;
+    public float ballDistToAdversaryGoalBlue = 0;
+    public float myDistToBallBlue = 0;
+    public float myDistToAdversaryGoalBlue = 0;
+    public float ballDistToMyGoalBlue = 0;
+    public float myDistToMyGoalBlue = 0;
 
     public void Shuffle(List<int> ts)
     {
@@ -307,11 +308,11 @@ public class EvolvingControl : MonoBehaviour {
 
 						// FITNESS ASSIGNMENT 
 						if (simsInfo[i].playerRed != null && !metaengine.PopulationRed [simsInfo [i].individualIndexRed].Evaluated) {
-							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviour, goalsRed, hitBallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
+							metaengine.PopulationRed [simsInfo [i].individualIndexRed].SetEvaluations(simsInfo [i].playerRed.GetScoreRed(fitnessBehaviourRed, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
                         }
                         if (simsInfo[i].playerBlue != null && !metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].Evaluated)
                         {
-                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviour, goalsBlue, hitBallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
+                            metaengine.PopulationBlue[simsInfo[i].individualIndexBlue].SetEvaluations(simsInfo[i].playerBlue.GetScoreBlue(fitnessBehaviourBlue, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
                         }
 						//
 						
