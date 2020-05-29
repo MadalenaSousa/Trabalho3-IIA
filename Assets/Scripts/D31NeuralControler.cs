@@ -244,7 +244,7 @@ public class D31NeuralControler : MonoBehaviour
         }
         else if (behaviour == EvolvingControl.FitnessType.Control)
         {
-            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW);
+            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW, myDistToAdversary);
         }
         else if (behaviour == EvolvingControl.FitnessType.Defend)
         {
@@ -264,7 +264,7 @@ public class D31NeuralControler : MonoBehaviour
         }
         else if (behaviour == EvolvingControl.FitnessType.Control)
         {
-            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW);
+            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW, myDistToAdversary);
         }
         else if (behaviour == EvolvingControl.FitnessType.Defend)
         {
@@ -305,7 +305,7 @@ public class D31NeuralControler : MonoBehaviour
     }
 
 
-    public float controlFitness(float hitBallW, float myDistToBallW, float myDistToMyGoalW)
+    public float controlFitness(float hitBallW, float myDistToBallW, float myDistToMyGoalW, float myDistToAdversary)
     {
 
         /*for (int i = 0; i < distanceToBall.Count; i++)
@@ -373,9 +373,18 @@ print("Goals On My Goal: " + GoalsOnMyGoal);*/
             distToMyGoalValue = myDistToMyGoalW * 10;
         }
 
+        float distToAdversary;
 
+         if(distanceToAdversary < 0.5){
+            distToAdversary = myDistToAdversary * -10; 
+         }
+         else {
+            distToAdversary = myDistToAdversary * 10;
+         }
+
+     
         //--- fitness final
-        float controlfitness = myDistToBallW * distToBallCount + distToMyGoalValue + HitBallValue;
+        float controlfitness = myDistToBallW * distToBallCount + distToMyGoalValue + HitBallValue + distToAdversary;
 
         return controlfitness;
 

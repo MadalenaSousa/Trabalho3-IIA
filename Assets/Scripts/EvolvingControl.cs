@@ -76,6 +76,7 @@ public class EvolvingControl : MonoBehaviour {
     public float ballDistToMyGoalRed = 1;
     public float myDistToMyGoalRed = 1;
     public float myDistToWallRed = 1;
+    public float myDistToAdversary = 1;
 
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 1;
@@ -87,6 +88,7 @@ public class EvolvingControl : MonoBehaviour {
     public float ballDistToMyGoalBlue = 1;
     public float myDistToMyGoalBlue = 1;
     public float myDistToWallBlue = 1;
+    public float myDistToAdversary = 1;
 
 
     public void Shuffle(List<int> ts)
