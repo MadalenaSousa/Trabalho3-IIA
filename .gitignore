@@ -64,3 +64,5 @@ crashlytics-build.properties
 
 # logs
 /Assets/Logs
+Packages/manifest.json
+ProjectSettings/ProjectVersion.txt

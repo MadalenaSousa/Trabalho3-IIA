@@ -63,9 +63,9 @@ public class EvolvingControl : MonoBehaviour {
     protected bool singlePlayer;
     protected string textoUpdate;
 
-    public enum FitnessTypeRed { kick, Control, Defend };
+    public enum FitnessTypeRed { kick, Control, Defend, kickAdversary, ControlAdversary, DefendAdversary };
     public FitnessTypeRed fitnessBehaviourRed = FitnessTypeRed.kick;
-    public enum FitnessTypeBlue { kick, Control, Defend };
+    public enum FitnessTypeBlue { kick, Control, Defend, kickAdversary, ControlAdversary, DefendAdversary };
     public FitnessTypeBlue fitnessBehaviourBlue = FitnessTypeBlue.kick;
 
     [Header("Red Fitness Weights")]
