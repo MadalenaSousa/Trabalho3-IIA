@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -338,26 +338,25 @@ MonoBehaviour:
   randomBluePlayerPosition: 0
   randomBallPosition: 0
   movingBall: 0
-  ChangePositions: 1
-  fitnessBehaviour: 1
+  ChangePositions: 10
+  fitnessBehaviourRed: 0
+  fitnessBehaviourBlue: 0
   goalsRed: 10
-  hitBallRed: 10
+  hitBallRed: 5
   hitWallRed: 0
-  ballDistToAdversaryGoalRed: 0
-  myDistToBallRed: 20
-  myDistToAdversaryGoalRed: 0
-  ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 5
-  myDistToWallRed: 0
+  ballDistToAdversaryGoalRed: 0.01
+  myDistToBallRed: 0.1
+  myDistToAdversaryGoalRed: 1.5
+  ballDistToMyGoalRed: 2
+  myDistToMyGoalRed: 1
   goalsBlue: 1
   hitBallBlue: 1
-  hitWallBlue: 1
+  hitWallBlue: 0
   ballDistToAdversaryGoalBlue: 1
   myDistToBallBlue: 1
   myDistToAdversaryGoalBlue: 1
   ballDistToMyGoalBlue: 1
   myDistToMyGoalBlue: 1
-  myDistToWallBlue: 1
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -388,18 +387,18 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 100
-  seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/F_G1000_S50_M003C05_T3/Best_Red_gen_1000.dat
-  pathToFileBlue: Assets/Logs/F_G1000_S50_M003C05_T3/Best_Red_gen_1000.dat
+  numberOfGenerations: 500
+  seedPopulationFromFile: 0
+  pathToFileRed: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
+  pathToFileBlue: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
   generation: 0
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.03
-  crossoverProbabilityRedPopulation: 0.5
+  mutationProbabilityRedPopulation: 0.15
+  crossoverProbabilityRedPopulation: 0.9
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0.03
+  mutationProbabilityBluePopulation: 0.05
   crossoverProbabilityBluePopulation: 0.5
   elitistBlue: 1
 --- !u!114 &1140463233

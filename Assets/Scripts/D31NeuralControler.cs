@@ -234,95 +234,248 @@ public class D31NeuralControler : MonoBehaviour
         return simulationTime > this.maxSimulTime;
     }
 
-    public float GetScoreBlue(EvolvingControl.FitnessType behaviour, float goalsW, float hitBallW, float hitWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW, float wallW)
+    public float GetScoreBlue(EvolvingControl.FitnessTypeBlue behaviour, float goalsW, float hitBallW, float hitTheWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
         float fitness = 0.0f;
 
-        if (behaviour == EvolvingControl.FitnessType.kick)
+        if (behaviour == EvolvingControl.FitnessTypeBlue.kick)
         {
-            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW, wallW);
+            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
         }
-        else if (behaviour == EvolvingControl.FitnessType.Control)
+        else if (behaviour == EvolvingControl.FitnessTypeBlue.Control)
         {
-            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW, myDistToAdversary);
+            fitness = controlFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
         }
-        else if (behaviour == EvolvingControl.FitnessType.Defend)
+        else if (behaviour == EvolvingControl.FitnessTypeBlue.Defend)
         {
-            fitness = defendFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
+        } 
+        else if(behaviour == EvolvingControl.FitnessTypeBlue.kickAdversary)
+        {
+            fitness = kickFitnessAdversary();
+        } 
+        else if(behaviour == EvolvingControl.FitnessTypeBlue.ControlAdversary)
+        {
+            fitness = controlFitnessAdversary();
+        }
+        else if (behaviour == EvolvingControl.FitnessTypeBlue.DefendAdversary)
+        {
+            fitness = defendFitnessAdversary();
         }
 
         return fitness;
     }
 
-    public float GetScoreRed(EvolvingControl.FitnessType behaviour, float goalsW, float hitBallW, float hitWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW, float wallW)
+    public float GetScoreRed(EvolvingControl.FitnessTypeRed behaviour, float goalsW, float hitBallW, float hitTheWallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
         float fitness = 0.0f;
-
-        if (behaviour == EvolvingControl.FitnessType.kick)
+        
+        if(behaviour == EvolvingControl.FitnessTypeRed.kick)
         {
-            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW, wallW);
+            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+        } else if(behaviour == EvolvingControl.FitnessTypeRed.Control)
+        {
+            fitness = controlFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+        } else if(behaviour == EvolvingControl.FitnessTypeRed.Defend)
+        {
+            fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
         }
-        else if (behaviour == EvolvingControl.FitnessType.Control)
+        else if (behaviour == EvolvingControl.FitnessTypeRed.kickAdversary)
         {
-            fitness = controlFitness(hitBallW, myDistToBallW, myDistToMyGoalW, myDistToAdversary);
+            fitness = kickFitnessAdversary();
         }
-        else if (behaviour == EvolvingControl.FitnessType.Defend)
+        else if (behaviour == EvolvingControl.FitnessTypeRed.ControlAdversary)
         {
-            fitness = defendFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = controlFitnessAdversary();
+        }
+        else if (behaviour == EvolvingControl.FitnessTypeRed.DefendAdversary)
+        {
+            fitness = defendFitnessAdversary();
         }
 
         return fitness;
     }
 
-    public float defendFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
+    public float defendFitness(float goalsW, float hitBallW, float myDistToBallW, float myDistToMyGoalW)
     {
-        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
-                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+        //PRINT DOS VALORES
+         
+        /*for (int i = 0; i < distanceToBall.Count; i++)
+        {
+            print("Distance To Ball: " + distanceToBall[i]);
+        }
 
-        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            print("Distance To My Goal: " + distanceToMyGoal[i]);
+        }
 
-        float distances = bigDist - smallDist;
+        for (int i = 0; i < distancefromBallToMyGoal.Count; i++)
+        {
+            print("Distance From Ball To My Goal: " + distancefromBallToMyGoal[i]);
+        }
 
-        float defensefitness = distances + goalsW * GoalsOnMyGoal + hitBallW * hitTheBall;
+        print("Distance Travelled: " + distanceTravelled);
+        print("Hit The Ball: " + hitTheBall);
+        print("Goals On My Goal: " + GoalsOnMyGoal);*/
 
-        return hitTheBall + distancefromBallToMyGoal.Average() - GoalsOnMyGoal;
+        //-----My Dist To Ball
+        float distToBallCount = 0; //quero que a distância à bola seja menor que 0.1 mais vezes
+        
+        for(int i = 0; i < distanceToBall.Count; i++)
+        {
+            if(distanceToBall[i] < 0.1)
+            {
+                distToBallCount++; //*50
+            }
+        }
+
+        //-----My Dist To Goal
+        float insideGoalCount = 0;
+        
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            if(distanceToMyGoal[i] == 0)
+            {
+                insideGoalCount++;
+            }
+        }
+
+        float distToMyGoalValue;
+
+        if(insideGoalCount > 2) //penalizo se ele tiver mais que 2 vezes dentro da baliza
+        {
+            distToMyGoalValue = myDistToMyGoalW * -10; //*10
+        } else
+        {
+            distToMyGoalValue = myDistToMyGoalW * 10;
+        }
+
+        //-----Goals
+        float goalsValue; //quero recompensar quando defendem e penalizar quando sofrem golo
+        
+        if (GoalsOnMyGoal == 0) 
+        {
+            goalsValue = goalsW * 200; //*1000
+        }
+        else
+        {
+            goalsValue = -goalsW * GoalsOnMyGoal;
+        }
+
+        //-----Hit Ball
+        float hitBallValue; //quero penalizar quando não tocam na bola e recompensar quando tocam
+        
+        if (hitTheBall == 0)
+        {
+            hitBallValue = -hitBallW * 200; //*50
+        } else
+        {
+            hitBallValue = hitBallW * hitTheBall;
+        }
+
+        //-----FINAL FITNESS SUM
+        float fitness = myDistToBallW * distToBallCount + distToMyGoalValue + goalsValue + hitBallValue;
+
+        return fitness;
     }
 
-    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW, float wallW)
+    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
-        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
-                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+        float distToBallCount = 0;
 
-        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
+        for (int i = 0; i < distanceToBall.Count; i++)
+        {
 
-        float distances = bigDist - smallDist;
+            if (distanceToBall[i] < 0.05)
+            {
+                distToBallCount++;
+            }
 
-        float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
+        }
 
-        float kickfitness = distances + goalsW * goals + hitBallW * hitTheBall + wallW * distanceToClosestWall.Average();
+
+        float distBallToAdversaryGoalCount = 0;
+        float distBallToAdversaryGoalValue;
+
+        if (hitTheBall > 0)
+        {
+
+            for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
+            {
+
+                if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
+                {
+                    distBallToAdversaryGoalCount++;
+                }
+                else
+                {
+                    distBallToAdversaryGoalCount--;
+                }
+            }
+        }
+
+        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
+
+        float hitBallValue;
+
+        if (hitTheBall == 0)
+        {
+            hitBallValue = -hitBallW * 200;
+        }
+        else
+        {
+            hitBallValue = hitBallW * hitTheBall;
+        }
+
+
+        float goalsValue;
+
+        if (GoalsOnAdversaryGoal == 0)
+        {
+            goalsValue = -goalsW * 200;
+        }
+        else
+        {
+            goalsValue = goalsW * GoalsOnAdversaryGoal;
+        }
+
+
+        float GoalsOnMyGoalValue;
+
+        if (GoalsOnMyGoal > 0)
+        {
+            GoalsOnMyGoalValue = -GoalsOnMyGoal * 200;
+        }
+        else
+        {
+            GoalsOnMyGoalValue = 800;
+        }
+
+
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue;
 
         return kickfitness;
     }
 
 
-    public float controlFitness(float hitBallW, float myDistToBallW, float myDistToMyGoalW, float myDistToAdversary)
+    public float controlFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
-
         /*for (int i = 0; i < distanceToBall.Count; i++)
-{
-print("Distance To Ball: " + distanceToBall[i]);
-}
-for (int i = 0; i < distanceToMyGoal.Count; i++)
-{
-print("Distance To My Goal: " + distanceToMyGoal[i]);
-}
-for (int i = 0; i < distancefromBallToMyGoal.Count; i++)
-{
-print("Distance From Ball To My Goal: " + distancefromBallToMyGoal[i]);
-}
-print("Distance Travelled: " + distanceTravelled);
-print("Hit The Ball: " + hitTheBall);
-print("Goals On My Goal: " + GoalsOnMyGoal);*/
+        {
+        print("Distance To Ball: " + distanceToBall[i]);
+        }
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+        print("Distance To My Goal: " + distanceToMyGoal[i]);
+        }
+        for (int i = 0; i < distancefromBallToMyGoal.Count; i++)
+        {
+        print("Distance From Ball To My Goal: " + distancefromBallToMyGoal[i]);
+        }
+        print("Distance Travelled: " + distanceTravelled);
+        print("Hit The Ball: " + hitTheBall);
+        print("Goals On My Goal: " + GoalsOnMyGoal);*/
 
 
 
@@ -340,7 +493,7 @@ print("Goals On My Goal: " + GoalsOnMyGoal);*/
         //---Hit Ball - recompensar quando tocam na bola, penalizar quando não tocam
         float HitBallValue;
 
-        if(hitTheBall == 0)
+        if (hitTheBall == 0)
         {
             HitBallValue = -hitBallW * 200;
         }
@@ -353,7 +506,7 @@ print("Goals On My Goal: " + GoalsOnMyGoal);*/
         //---Distância do jogador à baliza
         float insideGoalCount = 0;
 
-        for(int i = 0; i < distanceToMyGoal.Count; i++)
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
         {
             if (distanceToMyGoal[i] == 0)
             {
@@ -364,7 +517,7 @@ print("Goals On My Goal: " + GoalsOnMyGoal);*/
 
         float distToMyGoalValue;
 
-        if(insideGoalCount > 2) //--penaliza quando está mais de 2 vezes dentro da baliza
+        if (insideGoalCount > 2) //--penaliza quando está mais de 2 vezes dentro da baliza
         {
             distToMyGoalValue = myDistToMyGoalW * -10;
         }
@@ -373,22 +526,42 @@ print("Goals On My Goal: " + GoalsOnMyGoal);*/
             distToMyGoalValue = myDistToMyGoalW * 10;
         }
 
-        float distToAdversary;
 
-         if(distanceToAdversary < 0.5){
-            distToAdversary = myDistToAdversary * -10; 
-         }
-         else {
-            distToAdversary = myDistToAdversary * 10;
-         }
-
-     
         //--- fitness final
-        float controlfitness = myDistToBallW * distToBallCount + distToMyGoalValue + HitBallValue + distToAdversary;
+        float controlfitness = myDistToBallW * distToBallCount + distToMyGoalValue + HitBallValue;
 
         return controlfitness;
+    }
 
+    float defendFitnessAdversary()
+    {
+        float fitness = 0;
+        return fitness;
+    }
 
+    float kickFitnessAdversary()
+    {
+        float fitness = 0;
+        return fitness;
+    }
+
+    float controlFitnessAdversary()
+    {
+        float fitness = 0;
+        return fitness;
+    }
+
+    public float StandartDev(List<float> values)
+    {
+        float mean = values.Sum() / values.Count;
+        float sumSquares = 0;
+
+        for(int i = 0; i < values.Count; i++)
+        {
+            sumSquares = sumSquares + ((values[i] - mean) * (values[i] - mean));
+        }
+
+        return (float)Math.Sqrt(sumSquares / (values.Count - 1));
     }
 
 }

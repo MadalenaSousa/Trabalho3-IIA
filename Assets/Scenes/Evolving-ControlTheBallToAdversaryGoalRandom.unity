@@ -338,22 +338,25 @@ MonoBehaviour:
   randomBluePlayerPosition: 0
   randomBallPosition: 1
   movingBall: 0
-  ChangePositions: 10
-  fitnessBehaviour: 0
-  goalsRed: 1
-  hitBallRed: 1
-  ballDistToAdversaryGoalRed: 1
-  myDistToBallRed: 1
-  myDistToAdversaryGoalRed: 1
-  ballDistToMyGoalRed: 1
-  myDistToMyGoalRed: 1
-  goalsBlue: 1
-  hitBallBlue: 1
-  ballDistToAdversaryGoalBlue: 1
-  myDistToBallBlue: 1
-  myDistToAdversaryGoalBlue: 1
-  ballDistToMyGoalBlue: 1
-  myDistToMyGoalBlue: 1
+  ChangePositions: 1
+  fitnessBehaviourRed: 1
+  fitnessBehaviourBlue: 1
+  goalsRed: 0
+  hitBallRed: 0
+  hitWallRed: 0
+  ballDistToAdversaryGoalRed: 0
+  myDistToBallRed: 0
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 0
+  myDistToMyGoalRed: 0
+  goalsBlue: 0
+  hitBallBlue: 0
+  hitWallBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  myDistToBallBlue: 0
+  myDistToAdversaryGoalBlue: 0
+  ballDistToMyGoalBlue: 0
+  myDistToMyGoalBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -375,7 +378,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02d21771eeeb74e52884a6be78b317d1, type: 3}
   m_Name: 
@@ -385,19 +388,19 @@ MonoBehaviour:
   populationSize: 20
   NNTopology: 0c0000000300000002000000
   numberOfGenerations: 10
-  seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/05-21-14-49-07_teste/Best_Red_gen_100.dat
-  pathToFileBlue: Assets/Logs/05-21-14-49-07_teste/Best_Red_gen_100.dat
+  seedPopulationFromFile: 0
+  pathToFileRed: 
+  pathToFileBlue: 
   generation: 0
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
   mutationProbabilityRedPopulation: 0.15
   crossoverProbabilityRedPopulation: 0.9
-  elitistRed: 1
+  elitistRed: 0
   mutationProbabilityBluePopulation: 0.15
   crossoverProbabilityBluePopulation: 0.9
-  elitistBlue: 1
+  elitistBlue: 0
 --- !u!114 &1140463233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140463228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110dd914b6d874a878dca596c8cb4731, type: 3}
   m_Name: 
