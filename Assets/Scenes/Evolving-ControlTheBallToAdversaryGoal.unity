@@ -340,10 +340,10 @@ MonoBehaviour:
   movingBall: 0
   ChangePositions: 1
   fitnessBehaviour: 0
-  goalsRed: 100
-  hitBallRed: 100
-  ballDistToAdversaryGoalRed: 50
-  myDistToBallRed: 50
+  goalsRed: 1000
+  hitBallRed: 50
+  ballDistToAdversaryGoalRed: 10
+  myDistToBallRed: 10
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
   myDistToMyGoalRed: 0
@@ -399,8 +399,8 @@ MonoBehaviour:
   mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.3
   elitistRed: 0
-  mutationProbabilityBluePopulation: 0.05
-  crossoverProbabilityBluePopulation: 0.5
+  mutationProbabilityBluePopulation: 0.03
+  crossoverProbabilityBluePopulation: 0.3
   elitistBlue: 0
 --- !u!114 &1140463233
 MonoBehaviour:

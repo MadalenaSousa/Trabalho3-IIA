@@ -292,28 +292,12 @@ public class D31NeuralControler : MonoBehaviour
     public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW)
     {
 
-        for (int i = 0; i < distanceToBall.Count; i++)
-        {
-            print("Distance To Ball: " + distanceToBall[i]);
-        }
-
-      
-        for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
-        {
-            print("Distance From Ball To My Goal: " + distancefromBallToAdversaryGoal[i]);
-        }
-
-        print("Hit The Ball: " + hitTheBall);
-        print("Goals On My Goal: " + GoalsOnAdversaryGoal);
-
-
-
         float distToBallCount = 0;
 
         for (int i = 0; i < distanceToBall.Count; i++)
         {
 
-            if (distanceToBall[i] < 0.1)
+            if (distanceToBall[i] < 0.05)
             {
                 distToBallCount++;
             }
@@ -325,7 +309,7 @@ public class D31NeuralControler : MonoBehaviour
         for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
         {
 
-            if (distancefromBallToAdversaryGoal[i] < 0.1)
+            if (distancefromBallToAdversaryGoal[i] < 0.02)
             {
                 distBallToAdversaryGoalCount++;
             }
