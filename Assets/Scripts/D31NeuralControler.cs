@@ -358,16 +358,78 @@ public class D31NeuralControler : MonoBehaviour
 
     public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
     {
-        float smallDist = ballDistToAdversaryGoalW * distancefromBallToAdversaryGoal.Average() + myDistToBallW * distanceToBall.Average() +
-                        myDistToAdversaryGoal * distanceToAdversaryGoal.Average();
+        float distToBallCount = 0;
 
-        float bigDist = ballDistToMyGoalW * distancefromBallToMyGoal.Average() + myDistToMyGoalW * distanceToMyGoal.Average();
+        for (int i = 0; i < distanceToBall.Count; i++)
+        {
 
-        float distances = bigDist - smallDist;
+            if (distanceToBall[i] < 0.05)
+            {
+                distToBallCount++;
+            }
 
-        float goals = GoalsOnAdversaryGoal - GoalsOnMyGoal;
+        }
 
-        float kickfitness = distances + goalsW * goals + hitBallW * hitTheBall;
+
+        float distBallToAdversaryGoalCount = 0;
+        float distBallToAdversaryGoalValue;
+
+        if (hitTheBall > 0)
+        {
+
+            for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
+            {
+
+                if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
+                {
+                    distBallToAdversaryGoalCount++;
+                }
+                else
+                {
+                    distBallToAdversaryGoalCount--;
+                }
+            }
+        }
+
+        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
+
+        float hitBallValue;
+
+        if (hitTheBall == 0)
+        {
+            hitBallValue = -hitBallW * 200;
+        }
+        else
+        {
+            hitBallValue = hitBallW * hitTheBall;
+        }
+
+
+        float goalsValue;
+
+        if (GoalsOnAdversaryGoal == 0)
+        {
+            goalsValue = -goalsW * 200;
+        }
+        else
+        {
+            goalsValue = goalsW * GoalsOnAdversaryGoal;
+        }
+
+
+        float GoalsOnMyGoalValue;
+
+        if (GoalsOnMyGoal > 0)
+        {
+            GoalsOnMyGoalValue = -GoalsOnMyGoal * 200;
+        }
+        else
+        {
+            GoalsOnMyGoalValue = 800;
+        }
+
+
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue;
 
         return kickfitness;
     }
