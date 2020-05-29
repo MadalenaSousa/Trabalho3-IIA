@@ -396,10 +396,10 @@ MonoBehaviour:
   exportSuffix: _defend_mutacao0.05_crossover0.3_torneio3_seed50
   tournamentSize: 2
   mutationProbabilityRedPopulation: 0.03
-  crossoverProbabilityRedPopulation: 0.5
+  crossoverProbabilityRedPopulation: 0.3
   elitistRed: 0
   mutationProbabilityBluePopulation: 0.03
-  crossoverProbabilityBluePopulation: 0.5
+  crossoverProbabilityBluePopulation: 0.3
   elitistBlue: 0
 --- !u!114 &1140463233
 MonoBehaviour:
