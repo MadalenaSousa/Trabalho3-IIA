@@ -309,19 +309,22 @@ public class D31NeuralControler : MonoBehaviour
         float distBallToAdversaryGoalCount = 0;
         float distBallToAdversaryGoalValue;
 
-        for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
+        if (hitTheBall > 0)
         {
 
-            if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
+            for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
             {
-                distBallToAdversaryGoalCount++;
-            }
-            else
-            {
-                distBallToAdversaryGoalCount--;
+
+                if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
+                {
+                    distBallToAdversaryGoalCount++;
+                }
+                else
+                {
+                    distBallToAdversaryGoalCount--;
+                }
             }
         }
-
 
         distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
 
@@ -338,6 +341,10 @@ public class D31NeuralControler : MonoBehaviour
         {
             hitBallValue = hitBallW * hitTheBall;
         }
+
+
+
+
 
 
         float goalsValue;
