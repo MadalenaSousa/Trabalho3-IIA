@@ -393,12 +393,12 @@ MonoBehaviour:
   pathToFileBlue: Assets/Logs/05-26-21-17-35_teste/Best_Red_gen_69.dat
   generation: 0
   logFilename: 
-  exportSuffix: _teste
-  tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.05
+  exportSuffix: _defend_mutacao0.05_crossover0.3_torneio3_seed50
+  tournamentSize: 2
+  mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.5
   elitistRed: 0
-  mutationProbabilityBluePopulation: 0.05
+  mutationProbabilityBluePopulation: 0.03
   crossoverProbabilityBluePopulation: 0.5
   elitistBlue: 0
 --- !u!114 &1140463233
