@@ -334,20 +334,20 @@ MonoBehaviour:
     type: 3}
   SimultaneousSimulations: 20
   RandomSeed: 50
-  randomRedPlayerPosition: 1
+  randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
-  randomBallPosition: 1
+  randomBallPosition: 0
   movingBall: 0
   ChangePositions: 1
   fitnessBehaviour: 1
   goalsRed: 10
-  hitBallRed: 50
+  hitBallRed: 10
   hitWallRed: 0
   ballDistToAdversaryGoalRed: 0
-  myDistToBallRed: 50
+  myDistToBallRed: 20
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 0
+  myDistToMyGoalRed: 5
   myDistToWallRed: 0
   goalsBlue: 1
   hitBallBlue: 1
@@ -389,19 +389,19 @@ MonoBehaviour:
   populationSize: 20
   NNTopology: 0c0000000300000002000000
   numberOfGenerations: 100
-  seedPopulationFromFile: 0
-  pathToFileRed: 
-  pathToFileBlue: 
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Logs/F_G1000_S50_M003C05_T3/Best_Red_gen_1000.dat
+  pathToFileBlue: Assets/Logs/F_G1000_S50_M003C05_T3/Best_Red_gen_1000.dat
   generation: 0
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.05
+  mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.5
-  elitistRed: 0
-  mutationProbabilityBluePopulation: 0.05
+  elitistRed: 1
+  mutationProbabilityBluePopulation: 0.03
   crossoverProbabilityBluePopulation: 0.5
-  elitistBlue: 0
+  elitistBlue: 1
 --- !u!114 &1140463233
 MonoBehaviour:
   m_ObjectHideFlags: 0
