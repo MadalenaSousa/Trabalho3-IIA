@@ -391,7 +391,7 @@ public class D31NeuralControler : MonoBehaviour
 
             if (distanceToBall[i] < 0.1)
             {
-                distToBallCount = distToBallCount + (1 - distanceToBall[i]); //*50
+                distToBallCount = distToBallCount + (2 - distanceToBall[i]); //*50
             }
 
         }
@@ -412,11 +412,11 @@ public class D31NeuralControler : MonoBehaviour
 
                 if (distancefromBallToAdversaryGoal[i] < 0.05)
                 {
-                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount + (1 - distancefromBallToAdversaryGoal[i]); //*50
+                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount + (2 - distancefromBallToAdversaryGoal[i]); //*50
                 }
                 else
                 {
-                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount - (1 - distancefromBallToAdversaryGoal[i]); ;
+                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount - (2 - distancefromBallToAdversaryGoal[i]); ;
                 }
             }
 
@@ -425,7 +425,7 @@ public class D31NeuralControler : MonoBehaviour
 
                 if (distanceToAdversaryGoal[i] < 0.08 && distanceToAdversaryGoal[i] > 0)
                 {
-                    myDistToAdversaryGoalCount = myDistToAdversaryGoalCount + (1 - distanceToAdversaryGoal[i]); //*30
+                    myDistToAdversaryGoalCount = myDistToAdversaryGoalCount + (2 - distanceToAdversaryGoal[i]); //*30
                 }
             }
         }
@@ -441,7 +441,7 @@ public class D31NeuralControler : MonoBehaviour
         {
             if(distanceToMyGoal[i] > distanceToMyGoal[0])
             {
-                distToMyGoalCount = distToMyGoalCount + distanceToMyGoal[i];
+                distToMyGoalCount++;
             }
         }
 
