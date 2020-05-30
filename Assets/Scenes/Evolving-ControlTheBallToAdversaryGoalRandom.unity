@@ -387,8 +387,8 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 800
-  seedPopulationFromFile: 1
+  numberOfGenerations: 1000
+  seedPopulationFromFile: 0
   pathToFileRed: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
   pathToFileBlue: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
   generation: 0
