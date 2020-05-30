@@ -293,6 +293,7 @@ public class D31NeuralControler : MonoBehaviour
     {
 
         float distToBallCount = 0;
+        float distToBallValue;
 
         for (int i = 0; i < distanceToBall.Count; i++)
         {
@@ -303,6 +304,7 @@ public class D31NeuralControler : MonoBehaviour
             }
 
         }
+        distToBallValue = distToBallCount * myDistToBallW;
 
 
 
@@ -344,6 +346,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
 
+        float hitWallValue = -10 * hitTheWall;
 
 
 
@@ -364,7 +367,7 @@ public class D31NeuralControler : MonoBehaviour
 
         if (GoalsOnMyGoal > 0)
         {
-            GoalsOnMyGoalValue = -GoalsOnMyGoal * 200;
+            GoalsOnMyGoalValue = -GoalsOnMyGoal * 1000;
         }
         else
         {
@@ -376,7 +379,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue + hitWallValue;
 
         return kickfitness;
 
