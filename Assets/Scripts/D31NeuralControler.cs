@@ -365,12 +365,17 @@ public class D31NeuralControler : MonoBehaviour
 
         for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
         {
-            print("Distance To My Goal: " + distancefromBallToAdversaryGoal[i]);
+            print("Distance From Ball To Adversary Goal: " + distancefromBallToAdversaryGoal[i]);
         }
 
         for (int i = 0; i < distanceToAdversaryGoal.Count; i++)
         {
-            print("Distance From Ball To My Goal: " + distanceToAdversaryGoal[i]);
+            print("Distance To Adversary Goal: " + distanceToAdversaryGoal[i]);
+        }
+
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            print("Distance To My Goal: " + distanceToMyGoal[i]);
         }
 
         print("Hit The Ball: " + hitTheBall);
@@ -386,7 +391,7 @@ public class D31NeuralControler : MonoBehaviour
 
             if (distanceToBall[i] < 0.1)
             {
-                distToBallCount++; //*50
+                distToBallCount = distToBallCount + (1 - distanceToBall[i]); //*50
             }
 
         }
@@ -407,11 +412,11 @@ public class D31NeuralControler : MonoBehaviour
 
                 if (distancefromBallToAdversaryGoal[i] < 0.05)
                 {
-                    distBallToAdversaryGoalCount++; //*50
+                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount + (1 - distancefromBallToAdversaryGoal[i]); //*50
                 }
                 else
                 {
-                    distBallToAdversaryGoalCount--;
+                    distBallToAdversaryGoalCount = distBallToAdversaryGoalCount - (1 - distancefromBallToAdversaryGoal[i]); ;
                 }
             }
 
@@ -420,7 +425,7 @@ public class D31NeuralControler : MonoBehaviour
 
                 if (distanceToAdversaryGoal[i] < 0.08 && distanceToAdversaryGoal[i] > 0)
                 {
-                    myDistToAdversaryGoalCount++; //*30
+                    myDistToAdversaryGoalCount = myDistToAdversaryGoalCount + (1 - distanceToAdversaryGoal[i]); //*30
                 }
             }
         }
@@ -436,7 +441,7 @@ public class D31NeuralControler : MonoBehaviour
         {
             if(distanceToMyGoal[i] > distanceToMyGoal[0])
             {
-                distToMyGoalCount++;
+                distToMyGoalCount = distToMyGoalCount + distanceToMyGoal[i];
             }
         }
 
