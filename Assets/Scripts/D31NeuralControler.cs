@@ -240,7 +240,7 @@ public class D31NeuralControler : MonoBehaviour
 
         if (behaviour == EvolvingControl.FitnessType.kick)
         {
-            fitness = kickFitness( goalsW,  hitBallW,  ballDistToAdversaryGoalW,  myDistToBallW);
+            fitness = kickFitness( goalsW,  hitBallW,  ballDistToAdversaryGoalW,  myDistToBallW, ballDistToMyGoalW, myDistToWallW);
         }
         else if (behaviour == EvolvingControl.FitnessType.Control)
         {
@@ -260,7 +260,7 @@ public class D31NeuralControler : MonoBehaviour
 
         if (behaviour == EvolvingControl.FitnessType.kick)
         {
-            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW);
+            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, ballDistToMyGoalW, myDistToWallW);
         }
         else if (behaviour == EvolvingControl.FitnessType.Control)
         {
@@ -289,7 +289,7 @@ public class D31NeuralControler : MonoBehaviour
     }
 
 
-    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW)
+    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float ballDistToMyGoalW, float myDistToWallW)
     {
 
         float distToBallCount = 0;
@@ -311,24 +311,60 @@ public class D31NeuralControler : MonoBehaviour
         float distBallToAdversaryGoalCount = 0;
         float distBallToAdversaryGoalValue;
 
-        if (hitTheBall > 0)
+
+                for (int t = 0; t < distancefromBallToAdversaryGoal.Count; t++)
+                {
+
+                    if (distancefromBallToAdversaryGoal[t] < distancefromBallToAdversaryGoal[0])
+                    {
+                        distBallToAdversaryGoalCount++;
+                    }
+                    else
+                    {
+                        distBallToAdversaryGoalCount--;
+                    }
+                }
+            
+
+        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
+
+        float distBallToMyGoalCount = 0;
+        float distBallToMyGoalValue;
+
+
+        for (int t = 0; t < distancefromBallToMyGoal.Count; t++)
         {
 
-            for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
+            if (distancefromBallToMyGoal[t] < distancefromBallToMyGoal[0])
             {
-
-                if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
-                {
-                    distBallToAdversaryGoalCount++;
-                }
-                else
-                {
-                    distBallToAdversaryGoalCount--;
-                }
+                distBallToMyGoalCount--;
+            }
+            else
+            {
+                distBallToMyGoalCount++;
             }
         }
 
-        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
+
+        distBallToMyGoalValue = distBallToMyGoalCount * ballDistToMyGoalW;
+
+
+
+
+        float distToWallCount = 0;
+        float distToWallValue;
+
+        for (int i = 0; i < distanceToClosestWall.Count; i++)
+        {
+
+            if (distanceToClosestWall[i] < 0.08)
+            {
+                distToWallCount--;
+            }
+
+        }
+        distToWallValue = distToWallCount * myDistToWallW;
+
 
 
 
@@ -346,7 +382,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
 
-        float hitWallValue = -10 * hitTheWall;
+        float hitWallValue = -20 * hitTheWall;
 
 
 
@@ -379,7 +415,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue + distBallToMyGoalValue + distToWallValue;
 
         return kickfitness;
 
