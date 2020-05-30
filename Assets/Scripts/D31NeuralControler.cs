@@ -365,13 +365,63 @@ public class D31NeuralControler : MonoBehaviour
         for (int i = 0; i < distanceToBall.Count; i++)
         {
 
-            if (distanceToBall[i] < 0.1)
+            if (distanceToBall[i] < 0.05)
             {
                 distToBallCount = distToBallCount + (2 - distanceToBall[i]); //*50
             }
 
         }
+
         distToBallValue = distToBallCount * myDistToBallW; //quero que a minha distância à bola seja menor que 0.05 o maior número de vezes
+
+        //-----Ball Dist To Goals
+        float ballDistValue;
+        float ballDistCount = 0;
+
+        for(int i = 0; i < distancefromBallToMyGoal.Count; i++)
+        {
+            if(distancefromBallToMyGoal[i] > distancefromBallToAdversaryGoal[i])
+            {
+                ballDistCount++;
+            }
+            else
+            {
+                ballDistCount--;
+            }
+
+            if(i > 0 && distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[i-1])
+            {
+                ballDistCount++; //*50
+            }
+            else
+            {
+                ballDistCount--;
+            }
+        }
+
+        ballDistValue = ballDistCount + ballDistToAdversaryGoalW;
+
+        //-----Inside Goal
+        float insideGoalCount = 0;
+
+        for (int i = 0; i < distanceToMyGoal.Count; i++)
+        {
+            if (distanceToMyGoal[i] == 0 || distanceToAdversaryGoal[i] == 0)
+            {
+                insideGoalCount++;
+            }
+        }
+
+        float distToMyGoalValue;
+
+        if (insideGoalCount > 4) //penalizo se ele tiver mais que 4 vezes dentro da baliza
+        {
+            distToMyGoalValue = -100;
+        }
+        else
+        {
+            distToMyGoalValue = 50;
+        }
 
         //-----Hit The Ball
         float hitBallValue; //pensalizo por não tocar e recompenso por tocar
@@ -409,7 +459,7 @@ public class D31NeuralControler : MonoBehaviour
         }
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + ballDistValue + (hitTheWall * 10) + distToMyGoalValue;
         return kickfitness;
     }
 

@@ -346,7 +346,7 @@ MonoBehaviour:
   hitWallRed: 0
   ballDistToAdversaryGoalRed: 50
   myDistToBallRed: 50
-  myDistToAdversaryGoalRed: 30
+  myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
   myDistToMyGoalRed: 0
   goalsBlue: 0
@@ -387,10 +387,10 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 1000
-  seedPopulationFromFile: 0
-  pathToFileRed: 
-  pathToFileBlue: 
+  numberOfGenerations: 800
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
+  pathToFileBlue: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
   generation: 0
   logFilename: 
   exportSuffix: _kickRandom_mutacao0.03_crossover0.5_torneio3_seed50
