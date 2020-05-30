@@ -400,7 +400,7 @@ public class D31NeuralControler : MonoBehaviour
             for (int i = 0; i < distanceToAdversaryGoal.Count; i++)
             {
 
-                if (distanceToAdversaryGoal[i] < 0.05)
+                if (distanceToAdversaryGoal[i] < 0.08)
                 {
                     myDistToAdversaryGoalCount++; //*50
                 }
