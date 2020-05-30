@@ -240,7 +240,7 @@ public class D31NeuralControler : MonoBehaviour
 
         if (behaviour == EvolvingControl.FitnessTypeBlue.kick)
         {
-            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal);
         }
         else if (behaviour == EvolvingControl.FitnessTypeBlue.Control)
         {
@@ -260,7 +260,7 @@ public class D31NeuralControler : MonoBehaviour
         
         if(behaviour == EvolvingControl.FitnessTypeRed.kick)
         {
-            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
+            fitness = kickFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal);
         } else if(behaviour == EvolvingControl.FitnessTypeRed.Control)
         {
             fitness = controlFitness(goalsW, hitBallW, ballDistToAdversaryGoalW, myDistToBallW, myDistToAdversaryGoal, ballDistToMyGoalW, myDistToMyGoalW);
@@ -356,23 +356,30 @@ public class D31NeuralControler : MonoBehaviour
         return fitness;
     }
 
-    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoal, float ballDistToMyGoalW, float myDistToMyGoalW)
+    public float kickFitness(float goalsW, float hitBallW, float ballDistToAdversaryGoalW, float myDistToBallW, float myDistToAdversaryGoalW)
     {
+
+        //-----My Dist To Ball
         float distToBallCount = 0;
+        float distToBallValue;
 
         for (int i = 0; i < distanceToBall.Count; i++)
         {
 
             if (distanceToBall[i] < 0.05)
             {
-                distToBallCount++;
+                distToBallCount++; //*50
             }
 
         }
+        distToBallValue = distToBallCount * myDistToBallW; //quero que a minha distância à bola seja menor que 0.05 o maior número de vezes
 
-
+        //-----My Dist To Adversary Goal && Ball Dist To Adversary Goal
         float distBallToAdversaryGoalCount = 0;
         float distBallToAdversaryGoalValue;
+
+        float myDistToAdversaryGoalCount = 0;
+        float myDistToAdversaryGoalValue;
 
         if (hitTheBall > 0)
         {
@@ -380,20 +387,32 @@ public class D31NeuralControler : MonoBehaviour
             for (int i = 0; i < distancefromBallToAdversaryGoal.Count; i++)
             {
 
-                if (distancefromBallToAdversaryGoal[i] < distancefromBallToAdversaryGoal[0])
+                if (distancefromBallToAdversaryGoal[i] < 0.05)
                 {
-                    distBallToAdversaryGoalCount++;
+                    distBallToAdversaryGoalCount++; //*50
                 }
                 else
                 {
                     distBallToAdversaryGoalCount--;
                 }
             }
+
+            for (int i = 0; i < distanceToAdversaryGoal.Count; i++)
+            {
+
+                if (distanceToAdversaryGoal[i] < 0.05)
+                {
+                    myDistToAdversaryGoalCount++; //*50
+                }
+            }
         }
 
-        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW;
+        distBallToAdversaryGoalValue = distBallToAdversaryGoalCount * ballDistToAdversaryGoalW; //Recompenso por a bola estar o maior número de vezes a uma distância menor que 0.05 e penalizo pelo contrário
+        myDistToAdversaryGoalValue = myDistToAdversaryGoalCount * myDistToAdversaryGoalW; //quero que a minha distância à baliza do adversário seja menor que 0.05 mais vezes
 
-        float hitBallValue;
+
+        //-----Hit The Ball
+        float hitBallValue; //pensalizo por não tocar e recompenso por tocar
 
         if (hitTheBall == 0)
         {
@@ -401,11 +420,20 @@ public class D31NeuralControler : MonoBehaviour
         }
         else
         {
-            hitBallValue = hitBallW * hitTheBall;
+            hitBallValue = hitBallW * hitTheBall; //*100
         }
 
 
-        float goalsValue;
+        //-----Hit the Wall
+        float hitWallValue = 0;
+
+        if(hitTheWall > 2)
+        {
+            hitWallValue = -10 * hitTheWall; //penaliso por tocar mais de duas vezes
+        }
+
+        //-----Goals
+        float goalsValue; //penalizo por 0 golos marcados e recompenso caso contrário
 
         if (GoalsOnAdversaryGoal == 0)
         {
@@ -413,15 +441,14 @@ public class D31NeuralControler : MonoBehaviour
         }
         else
         {
-            goalsValue = goalsW * GoalsOnAdversaryGoal;
+            goalsValue = goalsW * GoalsOnAdversaryGoal; //*1000
         }
 
-
-        float GoalsOnMyGoalValue;
+        float GoalsOnMyGoalValue; //penalizo pelos golos sofridos e recompenso caso contrário
 
         if (GoalsOnMyGoal > 0)
         {
-            GoalsOnMyGoalValue = -GoalsOnMyGoal * 200;
+            GoalsOnMyGoalValue = -GoalsOnMyGoal * 800;
         }
         else
         {
@@ -429,7 +456,7 @@ public class D31NeuralControler : MonoBehaviour
         }
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue + myDistToAdversaryGoalValue;
 
         return kickfitness;
     }

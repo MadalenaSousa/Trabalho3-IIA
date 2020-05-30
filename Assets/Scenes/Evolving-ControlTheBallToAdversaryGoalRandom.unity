@@ -339,8 +339,8 @@ MonoBehaviour:
   randomBallPosition: 1
   movingBall: 0
   ChangePositions: 1
-  fitnessBehaviourRed: 1
-  fitnessBehaviourBlue: 1
+  fitnessBehaviourRed: 0
+  fitnessBehaviourBlue: 0
   goalsRed: 0
   hitBallRed: 0
   hitWallRed: 0
