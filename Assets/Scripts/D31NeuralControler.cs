@@ -379,7 +379,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallCount * myDistToBallW + distBallToAdversaryGoalValue + hitWallValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue;
 
         return kickfitness;
 
