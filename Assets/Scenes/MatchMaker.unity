@@ -328,34 +328,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 812458883}
   simulating: 0
-  PathRedPlayer: Assets/Logs/Agentes/patricio.dat
-  PathBluePlayer: Assets/Logs/Agentes/patricio.dat
-  simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
+  PathRedPlayer: Assets/Logs/05-31-00-17-30_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_1000.dat
+  PathBluePlayer: Assets/Logs/05-31-00-17-30_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_1000.dat
+  simulationPrefab: {fileID: 1790891761437960923, guid: d028c6ef5916c5f40b99eaa601455db9,
     type: 3}
   TheTimeScale: 1
   MatchTimeInSecs: 15
   randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
-  randomBallPosition: 1
-  MovingBall: 1
-  fitnessBehaviourRed: 2
-  fitnessBehaviourBlue: 2
+  randomBallPosition: 0
+  MovingBall: 0
+  fitnessBehaviourRed: 1
+  fitnessBehaviourBlue: 1
   goalsRed: 1000
   hitBallRed: 50
-  hitWallRed: 0
-  ballDistToAdversaryGoalRed: 0
   myDistToBallRed: 50
+  myDistToMyGoalRed: 10
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 10
+  ballDistToAdversaryGoalRed: 0
+  distanceTravelledRed: 0
+  hitWallRed: 0
+  myDistToWallRed: 0
   goalsBlue: 0
   hitBallBlue: 0
-  hitWallBlue: 0
-  ballDistToAdversaryGoalBlue: 0
   myDistToBallBlue: 0
+  myDistToMyGoalBlue: 0
   myDistToAdversaryGoalBlue: 0
   ballDistToMyGoalBlue: 0
-  myDistToMyGoalBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  distanceTravelledBlue: 0
+  hitWallBlue: 0
+  myDistToWallBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0

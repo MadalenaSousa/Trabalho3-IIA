@@ -340,7 +340,7 @@ MonoBehaviour:
   movingBall: 1
   ChangePositions: 10
   fitnessBehaviourRed: 3
-  fitnessBehaviourBlue: 4
+  fitnessBehaviourBlue: 3
   goalsRed: 1000
   hitBallRed: 50
   myDistToBallRed: 50
@@ -391,13 +391,13 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 200
-  seedPopulationFromFile: 0
-  pathToFileRed: 
-  pathToFileBlue: 
+  numberOfGenerations: 100
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Agentes/patricio.dat
+  pathToFileBlue: Assets/Agentes/patricio.dat
   generation: 0
   logFilename: 
-  exportSuffix: _defendStill_mutacao0.03_crossover0.5_torneio3_seed50
+  exportSuffix: _teste
   tournamentSize: 3
   mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.5

@@ -635,17 +635,4 @@ public class D31NeuralControler : MonoBehaviour
         return controlfitness;
     }
 
-    public float StandartDev(List<float> values)
-    {
-        float mean = values.Sum() / values.Count;
-        float sumSquares = 0;
-
-        for(int i = 0; i < values.Count; i++)
-        {
-            sumSquares = sumSquares + ((values[i] - mean) * (values[i] - mean));
-        }
-
-        return (float)Math.Sqrt(sumSquares / (values.Count - 1));
-    }
-
 }
