@@ -431,7 +431,7 @@ public class D31NeuralControler : MonoBehaviour
             hitBallValue = -hitBallW * 200;
         }
         else
-        {
+        { 
             hitBallValue = hitBallW * hitTheBall;
         }
 
@@ -439,17 +439,17 @@ public class D31NeuralControler : MonoBehaviour
         //-----Hit The Wall
         float hitWallValue = -20 * hitTheWall; //penalizo por bater na parede
 
-
+       
         //-----Goals
-        float goalsValue;
+        float goalsOnAdvGoalValue;
 
         if (GoalsOnAdversaryGoal == 0) //penalizo por não marcar golos e recompenso caso contrário
         {
-            goalsValue = -goalsW * 200;
+            goalsOnAdvGoalValue = -goalsW * 200;
         }
         else
         {
-            goalsValue = goalsW * GoalsOnAdversaryGoal;
+            goalsOnAdvGoalValue = goalsW * GoalsOnAdversaryGoal;
         }
 
         float GoalsOnMyGoalValue;
@@ -465,7 +465,7 @@ public class D31NeuralControler : MonoBehaviour
 
 
         //-----FINAL SUM
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue + distBallToMyGoalValue + distToWallValue;
+        float kickfitness = goalsOnAdvGoalValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + distBallToAdversaryGoalValue + hitWallValue + distBallToMyGoalValue + distToWallValue;
 
         return kickfitness;
     }
@@ -526,15 +526,15 @@ public class D31NeuralControler : MonoBehaviour
              }
          }
 
-         float distToMyGoalValue;
+         float distToGoalsValue;
 
          if (insideGoalCount > 4) //penalizo se ele tiver mais que 4 vezes dentro da baliza
          {
-             distToMyGoalValue = -100;
+             distToGoalsValue = -100;
          }
          else
          {
-             distToMyGoalValue = 50;
+             distToGoalsValue = 50;
          }
 
          //-----Hit The Ball
@@ -550,15 +550,15 @@ public class D31NeuralControler : MonoBehaviour
          }
 
          //-----Goals
-         float goalsValue; //penalizo por 0 golos marcados e recompenso caso contrário
+         float goalsOnAdvGoalValue; //penalizo por 0 golos marcados e recompenso caso contrário
 
          if (GoalsOnAdversaryGoal == 0)
          {
-             goalsValue = -goalsW * 200;
+             goalsOnAdvGoalValue = -goalsW * 200;
          }
          else
          {
-             goalsValue = goalsW * GoalsOnAdversaryGoal; //*1000
+             goalsOnAdvGoalValue = goalsW * GoalsOnAdversaryGoal; //*1000
          }
 
          float GoalsOnMyGoalValue; //penalizo pelos golos sofridos e recompenso caso contrário
@@ -573,7 +573,7 @@ public class D31NeuralControler : MonoBehaviour
          }
 
          //-----FINAL SUM
-         float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + ballDistValue + (hitTheWall * -10) + distToMyGoalValue;
+         float kickfitness = goalsOnAdvGoalValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + ballDistValue + (hitTheWall * -10) + distToGoalsValue;
          return kickfitness;
     }
 
