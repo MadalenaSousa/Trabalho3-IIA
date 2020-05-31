@@ -334,30 +334,34 @@ MonoBehaviour:
   simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
     type: 3}
   SimultaneousSimulations: 20
-  RandomSeed: 500
+  RandomSeed: 50
   randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
   randomBallPosition: 1
   movingBall: 1
   ChangePositions: 1
-  fitnessBehaviourRed: 2
-  fitnessBehaviourBlue: 2
+  fitnessBehaviourRed: 3
+  fitnessBehaviourBlue: 4
   goalsRed: 1000
   hitBallRed: 50
-  hitWallRed: 0
-  ballDistToAdversaryGoalRed: 0
   myDistToBallRed: 50
+  myDistToMyGoalRed: 10
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 10
+  ballDistToAdversaryGoalRed: 0
+  distanceTravelledRed: 0
+  hitWallRed: 0
+  myDistToWallRed: 0
   goalsBlue: 0
   hitBallBlue: 0
-  hitWallBlue: 0
-  ballDistToAdversaryGoalBlue: 0
   myDistToBallBlue: 0
+  myDistToMyGoalBlue: 0
   myDistToAdversaryGoalBlue: 0
   ballDistToMyGoalBlue: 0
-  myDistToMyGoalBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  distanceTravelledBlue: 0
+  hitWallBlue: 0
+  myDistToWallBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -394,12 +398,12 @@ MonoBehaviour:
   pathToFileBlue: Assets/Logs/05-26-21-17-35_teste/Best_Red_gen_69.dat
   generation: 0
   logFilename: 
-  exportSuffix: _defend_mutacao0.05_crossover0.3_torneio3_seed50
+  exportSuffix: _defendRandom_mutacao0.05_crossover0.5_torneio2_seed500
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.05
+  mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.5
   elitistRed: 0
-  mutationProbabilityBluePopulation: 0.05
+  mutationProbabilityBluePopulation: 0.03
   crossoverProbabilityBluePopulation: 0.5
   elitistBlue: 0
 --- !u!114 &1140463233

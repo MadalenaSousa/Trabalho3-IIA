@@ -339,24 +339,28 @@ MonoBehaviour:
   randomBallPosition: 0
   movingBall: 1
   ChangePositions: 10
-  fitnessBehaviourRed: 2
-  fitnessBehaviourBlue: 2
+  fitnessBehaviourRed: 3
+  fitnessBehaviourBlue: 4
   goalsRed: 1000
   hitBallRed: 50
-  hitWallRed: 0
-  ballDistToAdversaryGoalRed: 0
   myDistToBallRed: 50
+  myDistToMyGoalRed: 10
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 10
+  ballDistToAdversaryGoalRed: 0
+  distanceTravelledRed: 0
+  hitWallRed: 0
+  myDistToWallRed: 0
   goalsBlue: 0
   hitBallBlue: 0
-  hitWallBlue: 0
-  ballDistToAdversaryGoalBlue: 0
   myDistToBallBlue: 0
+  myDistToMyGoalBlue: 0
   myDistToAdversaryGoalBlue: 0
   ballDistToMyGoalBlue: 0
-  myDistToMyGoalBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  distanceTravelledBlue: 0
+  hitWallBlue: 0
+  myDistToWallBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
