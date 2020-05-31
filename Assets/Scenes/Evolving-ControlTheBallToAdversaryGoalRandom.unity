@@ -343,20 +343,24 @@ MonoBehaviour:
   fitnessBehaviourBlue: 0
   goalsRed: 1000
   hitBallRed: 100
-  hitWallRed: 0
-  ballDistToAdversaryGoalRed: 50
   myDistToBallRed: 50
-  myDistToAdversaryGoalRed: 0
-  ballDistToMyGoalRed: 0
   myDistToMyGoalRed: 0
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 30
+  ballDistToAdversaryGoalRed: 50
+  distanceTravelledRed: 0
+  hitWallRed: 0
+  myDistToWallRed: 20
   goalsBlue: 0
   hitBallBlue: 0
-  hitWallBlue: 0
-  ballDistToAdversaryGoalBlue: 0
   myDistToBallBlue: 0
+  myDistToMyGoalBlue: 0
   myDistToAdversaryGoalBlue: 0
   ballDistToMyGoalBlue: 0
-  myDistToMyGoalBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  distanceTravelledBlue: 0
+  hitWallBlue: 0
+  myDistToWallBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -388,7 +392,7 @@ MonoBehaviour:
   populationSize: 20
   NNTopology: 0c0000000300000002000000
   numberOfGenerations: 1000
-  seedPopulationFromFile: 1
+  seedPopulationFromFile: 0
   pathToFileRed: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
   pathToFileBlue: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
   generation: 0

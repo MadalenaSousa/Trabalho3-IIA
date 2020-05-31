@@ -341,22 +341,26 @@ MonoBehaviour:
   ChangePositions: 10
   fitnessBehaviourRed: 0
   fitnessBehaviourBlue: 0
-  goalsRed: 10
-  hitBallRed: 5
+  goalsRed: 1000
+  hitBallRed: 50
+  myDistToBallRed: 100
+  myDistToMyGoalRed: 0
+  myDistToAdversaryGoalRed: 0
+  ballDistToMyGoalRed: 30
+  ballDistToAdversaryGoalRed: 50
+  distanceTravelledRed: 0
   hitWallRed: 0
-  ballDistToAdversaryGoalRed: 0.01
-  myDistToBallRed: 0.1
-  myDistToAdversaryGoalRed: 1.5
-  ballDistToMyGoalRed: 2
-  myDistToMyGoalRed: 1
-  goalsBlue: 1
-  hitBallBlue: 1
+  myDistToWallRed: 20
+  goalsBlue: 0
+  hitBallBlue: 0
+  myDistToBallBlue: 0
+  myDistToMyGoalBlue: 0
+  myDistToAdversaryGoalBlue: 0
+  ballDistToMyGoalBlue: 0
+  ballDistToAdversaryGoalBlue: 0
+  distanceTravelledBlue: 0
   hitWallBlue: 0
-  ballDistToAdversaryGoalBlue: 1
-  myDistToBallBlue: 1
-  myDistToAdversaryGoalBlue: 1
-  ballDistToMyGoalBlue: 1
-  myDistToMyGoalBlue: 1
+  myDistToWallBlue: 0
 --- !u!4 &1140463230
 Transform:
   m_ObjectHideFlags: 0
@@ -395,10 +399,10 @@ MonoBehaviour:
   logFilename: 
   exportSuffix: _teste
   tournamentSize: 3
-  mutationProbabilityRedPopulation: 0.15
-  crossoverProbabilityRedPopulation: 0.9
+  mutationProbabilityRedPopulation: 0.03
+  crossoverProbabilityRedPopulation: 0.5
   elitistRed: 1
-  mutationProbabilityBluePopulation: 0.05
+  mutationProbabilityBluePopulation: 0.03
   crossoverProbabilityBluePopulation: 0.5
   elitistBlue: 1
 --- !u!114 &1140463233

@@ -328,9 +328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 812458883}
   simulating: 0
-  PathRedPlayer: Assets/Logs/05-27-15-02-44_opcap1/Best_Red_gen_1000.dat
-  PathBluePlayer: Assets/Logs/05-27-15-02-44_opcap1/Best_Red_gen_1000.dat
-  simulationPrefab: {fileID: 1790891761437960923, guid: 85e73099f30f64d0e8b02f259d90236c,
+  PathRedPlayer: Assets/Logs/Agentes/patricio.dat
+  PathBluePlayer: Assets/Logs/Agentes/patricio.dat
+  simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
     type: 3}
   TheTimeScale: 1
   MatchTimeInSecs: 15
@@ -340,14 +340,14 @@ MonoBehaviour:
   MovingBall: 1
   fitnessBehaviourRed: 2
   fitnessBehaviourBlue: 2
-  goalsRed: 0
-  hitBallRed: 0
+  goalsRed: 1000
+  hitBallRed: 50
   hitWallRed: 0
   ballDistToAdversaryGoalRed: 0
-  myDistToBallRed: 0
+  myDistToBallRed: 50
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
-  myDistToMyGoalRed: 0
+  myDistToMyGoalRed: 10
   goalsBlue: 0
   hitBallBlue: 0
   hitWallBlue: 0

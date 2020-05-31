@@ -29,28 +29,33 @@ public class MatchMaker : MonoBehaviour {
     public bool randomBallPosition = false;
     public bool MovingBall = false;
 
-    public EvolvingControl.FitnessTypeRed fitnessBehaviourRed = EvolvingControl.FitnessTypeRed.kick;
-    public EvolvingControl.FitnessTypeBlue fitnessBehaviourBlue = EvolvingControl.FitnessTypeBlue.kick;
+    public EvolvingControl.FitnessTypeRed fitnessBehaviourRed = EvolvingControl.FitnessTypeRed.kick1;
+    public EvolvingControl.FitnessTypeBlue fitnessBehaviourBlue = EvolvingControl.FitnessTypeBlue.kick1;
 
     [Header("Red Fitness Weights")]
     public float goalsRed = 0;
     public float hitBallRed = 0;
-    public float hitWallRed = 0;
-    public float ballDistToAdversaryGoalRed = 0;
     public float myDistToBallRed = 0;
+    public float myDistToMyGoalRed = 0;
     public float myDistToAdversaryGoalRed = 0;
     public float ballDistToMyGoalRed = 0;
-    public float myDistToMyGoalRed = 0;
+    public float ballDistToAdversaryGoalRed = 0;
+    public float distanceTravelledRed = 0;
+    public float hitWallRed = 0;
+    public float myDistToWallRed = 0;
+
 
     [Header("Blue Fitness Weights")]
     public float goalsBlue = 0;
     public float hitBallBlue = 0;
-    public float hitWallBlue = 0;
-    public float ballDistToAdversaryGoalBlue = 0;
     public float myDistToBallBlue = 0;
+    public float myDistToMyGoalBlue = 0;
     public float myDistToAdversaryGoalBlue = 0;
     public float ballDistToMyGoalBlue = 0;
-    public float myDistToMyGoalBlue = 0;
+    public float ballDistToAdversaryGoalBlue = 0;
+    public float distanceTravelledBlue = 0;
+    public float hitWallBlue = 0;
+    public float myDistToWallBlue = 0;
 
     void Awake(){
 		// deal with the singleton part
@@ -176,9 +181,9 @@ public class MatchMaker : MonoBehaviour {
 
 		} else if (simulating) {
 			if (!bestSimulation.playerRed.running && bestSimulation.playerRed.gameOver) {
-                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviourRed, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed));
+                Debug.Log("Red score (according to current GetScoreRed fitness function): " + bestSimulation.playerRed.GetScoreRed(fitnessBehaviourRed, goalsRed, hitBallRed, hitWallRed, ballDistToAdversaryGoalRed, myDistToBallRed, myDistToAdversaryGoalRed, ballDistToMyGoalRed, myDistToMyGoalRed, myDistToWallRed));
                 if(bestSimulation.playerBlue != null)
-                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviourBlue, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue));
+                    Debug.Log("Blue score (according to current GetScoreBlue fitness function): " + bestSimulation.playerBlue.GetScoreBlue(fitnessBehaviourBlue, goalsBlue, hitBallBlue, hitWallBlue, ballDistToAdversaryGoalBlue, myDistToBallBlue, myDistToAdversaryGoalBlue, ballDistToMyGoalBlue, myDistToMyGoalBlue, myDistToWallBlue));
                 simulating = false;
 				DestroyImmediate (bestSimulation.sim);
 			}
