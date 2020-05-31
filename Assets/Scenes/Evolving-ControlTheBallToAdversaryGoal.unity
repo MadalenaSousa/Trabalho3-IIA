@@ -391,10 +391,10 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 500
-  seedPopulationFromFile: 0
-  pathToFileRed: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
-  pathToFileBlue: Assets/Logs/05-22-21-05-13_teste/Best_Red_gen_200.dat
+  numberOfGenerations: 100
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Agentes/eder-confuso.dat
+  pathToFileBlue: Assets/Agentes/eder-confuso.dat
   generation: 0
   logFilename: 
   exportSuffix: _teste

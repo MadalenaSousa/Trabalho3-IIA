@@ -339,8 +339,8 @@ MonoBehaviour:
   randomBallPosition: 1
   movingBall: 0
   ChangePositions: 1
-  fitnessBehaviourRed: 0
-  fitnessBehaviourBlue: 0
+  fitnessBehaviourRed: 2
+  fitnessBehaviourBlue: 2
   goalsRed: 1000
   hitBallRed: 100
   myDistToBallRed: 50
@@ -391,13 +391,13 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 1000
-  seedPopulationFromFile: 0
-  pathToFileRed: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
-  pathToFileBlue: Assets/Logs/05-30-19-15-15_kickRandom_mutacao0.03_crossover0.5_torneio3_seed50/Best_Red_gen_989.dat
+  numberOfGenerations: 100
+  seedPopulationFromFile: 1
+  pathToFileRed: Assets/Agentes/william.dat
+  pathToFileBlue: Assets/Agentes/william.dat
   generation: 0
   logFilename: 
-  exportSuffix: _kickRandom_mutacao0.03_crossover0.5_torneio3_seed50
+  exportSuffix: _teste
   tournamentSize: 3
   mutationProbabilityRedPopulation: 0.03
   crossoverProbabilityRedPopulation: 0.5
