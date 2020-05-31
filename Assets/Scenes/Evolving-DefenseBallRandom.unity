@@ -334,7 +334,7 @@ MonoBehaviour:
   simulationPrefab: {fileID: 1790891761437960923, guid: 2a65700acbb574743b3a707b47cd0312,
     type: 3}
   SimultaneousSimulations: 20
-  RandomSeed: 500
+  RandomSeed: 1500
   randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
   randomBallPosition: 1
@@ -394,8 +394,8 @@ MonoBehaviour:
   pathToFileBlue: Assets/Logs/05-26-21-17-35_teste/Best_Red_gen_69.dat
   generation: 0
   logFilename: 
-  exportSuffix: _defend_mutacao0.05_crossover0.3_torneio3_seed50
-  tournamentSize: 3
+  exportSuffix: _defendRandom_mutacao0.05_crossover0.5_torneio2_seed1500
+  tournamentSize: 2
   mutationProbabilityRedPopulation: 0.05
   crossoverProbabilityRedPopulation: 0.5
   elitistRed: 0
