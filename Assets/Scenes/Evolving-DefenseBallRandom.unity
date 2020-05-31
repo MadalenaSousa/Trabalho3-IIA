@@ -341,10 +341,10 @@ MonoBehaviour:
   ChangePositions: 1
   fitnessBehaviourRed: 3
   fitnessBehaviourBlue: 3
-  goalsRed: 1000
-  hitBallRed: 50
-  myDistToBallRed: 50
-  myDistToMyGoalRed: 10
+  goalsRed: 0
+  hitBallRed: 10
+  myDistToBallRed: 20
+  myDistToMyGoalRed: 5
   myDistToAdversaryGoalRed: 0
   ballDistToMyGoalRed: 0
   ballDistToAdversaryGoalRed: 0
