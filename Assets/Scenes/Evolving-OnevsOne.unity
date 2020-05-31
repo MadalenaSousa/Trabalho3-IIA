@@ -391,9 +391,9 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 200
+  numberOfGenerations: 800
   seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/Agentes/patricio.dat
+  pathToFileRed: Assets/Logs/Agentes/eder-1.dat
   pathToFileBlue: Assets/Logs/Agentes/patricio.dat
   generation: 0
   logFilename: 
