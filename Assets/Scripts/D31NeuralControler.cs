@@ -253,18 +253,6 @@ public class D31NeuralControler : MonoBehaviour
         else if (behaviour == EvolvingControl.FitnessTypeBlue.Defend)
         {
             fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
-        } 
-        else if(behaviour == EvolvingControl.FitnessTypeBlue.kickAdversary)
-        {
-            fitness = kickFitnessAdversary();
-        } 
-        else if(behaviour == EvolvingControl.FitnessTypeBlue.ControlAdversary)
-        {
-            fitness = controlFitnessAdversary();
-        }
-        else if (behaviour == EvolvingControl.FitnessTypeBlue.DefendAdversary)
-        {
-            fitness = defendFitnessAdversary();
         }
 
         return fitness;
@@ -290,19 +278,7 @@ public class D31NeuralControler : MonoBehaviour
         {
             fitness = defendFitness(goalsW, hitBallW, myDistToBallW, myDistToMyGoalW);
         }
-        else if (behaviour == EvolvingControl.FitnessTypeRed.kickAdversary)
-        {
-            fitness = kickFitnessAdversary();
-        }
-        else if (behaviour == EvolvingControl.FitnessTypeRed.ControlAdversary)
-        {
-            fitness = controlFitnessAdversary();
-        }
-        else if (behaviour == EvolvingControl.FitnessTypeRed.DefendAdversary)
-        {
-            fitness = defendFitnessAdversary();
-        }
-
+        
         return fitness;
     }
 
@@ -657,24 +633,6 @@ public class D31NeuralControler : MonoBehaviour
         float controlfitness = myDistToBallW * distToBallCount + distToMyGoalValue + HitBallValue;
 
         return controlfitness;
-    }
-
-    float defendFitnessAdversary()
-    {
-        float fitness = 0;
-        return fitness;
-    }
-
-    float kickFitnessAdversary()
-    {
-        float fitness = 0;
-        return fitness;
-    }
-
-    float controlFitnessAdversary()
-    {
-        float fitness = 0;
-        return fitness;
     }
 
     public float StandartDev(List<float> values)
