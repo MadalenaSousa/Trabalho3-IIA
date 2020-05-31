@@ -399,7 +399,7 @@ public class D31NeuralControler : MonoBehaviour
             }
         }
 
-        ballDistValue = ballDistCount + ballDistToAdversaryGoalW;
+        ballDistValue = ballDistCount * ballDistToAdversaryGoalW;
 
         //-----Inside Goal
         float insideGoalCount = 0;
@@ -459,7 +459,7 @@ public class D31NeuralControler : MonoBehaviour
         }
 
 
-        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + ballDistValue + (hitTheWall * 10) + distToMyGoalValue;
+        float kickfitness = goalsValue + GoalsOnMyGoalValue + hitBallValue + distToBallValue + ballDistValue + (hitTheWall * -10) + distToMyGoalValue;
         return kickfitness;
     }
 
