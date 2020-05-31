@@ -343,11 +343,11 @@ MonoBehaviour:
   goalsRed: 1000
   hitBallRed: 50
   ballDistToAdversaryGoalRed: 50
-  myDistToBallRed: 20
+  myDistToBallRed: 100
   myDistToAdversaryGoalRed: 0
-  ballDistToMyGoalRed: 0
+  ballDistToMyGoalRed: 30
   myDistToMyGoalRed: 0
-  myDistToWallRed: 0
+  myDistToWallRed: 20
   hitWallRed: 0
   goalsBlue: 1
   hitBallBlue: 1
@@ -388,10 +388,10 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 500
+  numberOfGenerations: 1000
   seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/Mais500/Best_Red_gen_479.dat
-  pathToFileBlue: Assets/Logs/Mais500/Best_Red_gen_479.dat
+  pathToFileRed: Assets/Logs/05-30-12-35-24_teste/Best_Red_gen_490.dat
+  pathToFileBlue: Assets/Logs/05-30-12-35-24_teste/Best_Red_gen_490.dat
   generation: 0
   logFilename: 
   exportSuffix: _teste
