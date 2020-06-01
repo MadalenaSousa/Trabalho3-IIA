@@ -334,9 +334,9 @@ MonoBehaviour:
     type: 3}
   SimultaneousSimulations: 20
   RandomSeed: 50
-  randomRedPlayerPosition: 1
+  randomRedPlayerPosition: 0
   randomBluePlayerPosition: 0
-  randomBallPosition: 1
+  randomBallPosition: 0
   movingBall: 0
   ChangePositions: 1
   fitnessBehaviour: 0
@@ -388,20 +388,20 @@ MonoBehaviour:
   selectionMethod: 0
   populationSize: 20
   NNTopology: 0c0000000300000002000000
-  numberOfGenerations: 1000
-  seedPopulationFromFile: 1
-  pathToFileRed: Assets/Logs/05-30-12-35-24_teste/Best_Red_gen_490.dat
-  pathToFileBlue: Assets/Logs/05-30-12-35-24_teste/Best_Red_gen_490.dat
+  numberOfGenerations: 500
+  seedPopulationFromFile: 0
+  pathToFileRed: Assets/Logs/fitness quase boa/Best_Red_gen_987.dat
+  pathToFileBlue: Assets/Logs/fitness quase boa/Best_Red_gen_987.dat
   generation: 0
   logFilename: 
-  exportSuffix: _teste
+  exportSuffix: kick_50_t3_05_003_EvolControlBallToAdvGoalNotRandom
   tournamentSize: 3
   mutationProbabilityRedPopulation: 0.03
-  crossoverProbabilityRedPopulation: 0.3
-  elitistRed: 0
+  crossoverProbabilityRedPopulation: 0.5
+  elitistRed: 1
   mutationProbabilityBluePopulation: 0.03
-  crossoverProbabilityBluePopulation: 0.3
-  elitistBlue: 0
+  crossoverProbabilityBluePopulation: 0.5
+  elitistBlue: 1
 --- !u!114 &1140463233
 MonoBehaviour:
   m_ObjectHideFlags: 0
